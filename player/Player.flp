@@ -1,0 +1,6 @@
+﻿<flash_project name="Player" version="1">
+    <project_file path="./player.fla" filetype="fla" profile="" def_file="true" />
+    <project_file path="./AC_RunActiveContent.js" filetype="js" />
+    <project_file path="./player.html" filetype="html" />
+    <project_file path="./player.swf" filetype="swf" />
+</flash_project>
