@@ -1,0 +1,1 @@
+xulrunner\windows\xulrunner application\application.ini
