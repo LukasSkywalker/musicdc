@@ -1,0 +1,32 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>					
+<overlay id="radio_tab_overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 			
+<tabpanel id="tab_search"><!--Download-->
+							<vbox flex="1" >
+									<hbox id="startText" pack="end" style="background-color: #eeeeee; position: relative; margin: 1em auto; border: 1px solid ThreeDShadow; -moz-border-radius: 10px; -moz-background-origin: content;">
+										<label value="Type some searchterms in the textbox above to start a search"/>
+									</hbox>
+								<richlistbox id="search_maintree" seltype="multiple" flex="1" rows="4">
+									<grid flex="1">
+										<columns flex="1">
+											<column label="&extendedlibrary.context.preview;" flex="1"/>
+											<column label="&extendedlibrary.artist;" flex="20"/>
+											<column label="&extendedlibrary.title;" flex="20"/>
+											<column label="&extendedlibrary.service;" flex="4"/>
+											<column label="&extendedlibrary.context.download;" pack="end" flex="4"/>
+											<column label="" hidden="true"/>
+										</columns>
+										<rows id="search_treechildren">
+										</rows>
+									</grid>
+								</richlistbox>
+							</vbox>
+						</tabpanel>
+</overlay>

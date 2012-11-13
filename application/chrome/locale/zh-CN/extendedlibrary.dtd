@@ -1,0 +1,94 @@
+<!ENTITY extendedlibrary.label "音乐下载中心">
+<!ENTITY extendedlibrary.artist "艺术家">
+<!ENTITY extendedlibrary.title "标题">
+<!ENTITY extendedlibrary.search "搜索">
+<!ENTITY extendedlibrary.context.download "下载">
+<!ENTITY extendedlibrary.context.downloadToFolder "下载到文件夹">
+<!ENTITY extendedlibrary.context.preview "预览">
+<!---->
+<!ENTITY extendedlibrary.service "服务">
+<!ENTITY extendedlibrary.services "服务">
+<!ENTITY extendedlibrary.advantages "优势">
+<!ENTITY extendedlibrary.disadvantages "缺点">
+<!ENTITY extendedlibrary.enabled "启用">
+<!ENTITY extendedlibrary.suggestNewService "推荐一个新的服务">
+<!ENTITY extendedlibrary.appearance "外观">
+<!ENTITY extendedlibrary.showHideTooltips "显示工具提示">
+<!ENTITY extendedlibrary.showMenubar "显示菜单栏">
+<!ENTITY extendedlibrary.advanced "高级">
+<!ENTITY extendedlibrary.resetFirstRun "显示首次使用对话框">
+<!ENTITY extendedlibrary.resetFirstRun.description "当预览无效时启用">
+<!ENTITY extendedlibrary.website "网站">
+<!ENTITY extendedlibrary.bugs "错误">
+<!---->
+<!ENTITY extendedlibrary.radio "电台">
+<!ENTITY extendedlibrary.genre "类型">
+<!ENTITY extendedlibrary.orSearch "或搜索">
+<!ENTITY extendedlibrary.other "其他">
+<!ENTITY extendedlibrary.share "分享">
+<!ENTITY extendedlibrary.email "电子邮件">
+<!ENTITY extendedlibrary.link "链接地址">
+<!ENTITY extendedlibrary.urlToPls ".pls文件链接">
+<!ENTITY extendedlibrary.urlToStream "或音频流链接">
+<!ENTITY extendedlibrary.pickLocalPls "或选择本地.pls文件">
+<!ENTITY extendedlibrary.name "名称">
+<!ENTITY extendedlibrary.listeners "听众">
+<!ENTITY extendedlibrary.bookmarks "书签">
+<!---->
+<!ENTITY extendedlibrary.history "历史">
+<!ENTITY extendedlibrary.lastPlayed "最近播放">
+<!ENTITY extendedlibrary.timesPlayed "播放次数">
+<!---->
+<!ENTITY extendedlibrary.menu.file "文件">
+<!ENTITY extendedlibrary.menu.file.accesskey "F">
+<!ENTITY extendedlibrary.menu.file.openLocation "打开位置">
+<!ENTITY extendedlibrary.menu.file.playFileFromUrl "从链接地址播放文件">
+<!ENTITY extendedlibrary.menu.file.playFileFromComputer "播放本地文件">
+<!ENTITY extendedlibrary.menu.file.quit "退出">
+<!ENTITY extendedlibrary.menu.file.quit.accesskey "Q">
+<!ENTITY extendedlibrary.menu.tools "工具">
+<!ENTITY extendedlibrary.menu.tools.accesskey "T">
+<!ENTITY extendedlibrary.menu.tools.settings "设置">
+<!ENTITY extendedlibrary.menu.tools.settings.accesskey "S">
+<!ENTITY extendedlibrary.menu.tools.jsconsole "错误控制台">
+<!ENTITY extendedlibrary.menu.tools.downloads "下载">
+<!ENTITY extendedlibrary.menu.tools.addons "附加组件">
+<!ENTITY extendedlibrary.feedback "反馈">
+<!ENTITY extendedlibrary.contribute "贡献">
+<!ENTITY extendedlibrary.translating "翻译">
+<!ENTITY extendedlibrary.coding "编码">
+<!ENTITY extendedlibrary.webdesign "网页设计">
+<!ENTITY extendedlibrary.promotion "推广">
+<!ENTITY extendedlibrary.menu.help "帮助">
+<!ENTITY extendedlibrary.menu.help.accesskey "H">
+<!ENTITY extendedlibrary.menu.help.online "在线帮助">
+<!ENTITY extendedlibrary.menu.help.online.accesskey "O">
+<!ENTITY extendedlibrary.menu.help.about "关于">
+<!ENTITY extendedlibrary.menu.help.about.accesskey "A">
+<!ENTITY extendedlibrary.menu.help.checkForUpdates "检查更新...">
+<!---->
+<!ENTITY extendedlibrary.internet "互联网">
+<!ENTITY mybrowser.home "首页">
+<!ENTITY mybrowser.back "返回">
+<!ENTITY mybrowser.forward "转到">
+<!ENTITY mybrowser.reload "重载">
+<!ENTITY mybrowser.stop "停止">
+<!ENTITY mybrowser.go "开始">
+<!---->
+<!ENTITY extendedlibrary.firstrun.description1 "欢迎来到音乐下载中心。请花20秒的时间确认您已经安装了Adobe Flash Player。">
+<!ENTITY extendedlibrary.firstrun.description2 "你能看见下面的播放器并且听到音乐吗？">
+<!ENTITY extendedlibrary.firstrun.doSomething "如果一切正常，请按'工作！！！'否则，点击'不工作'以安装Flash播放器。">
+<!ENTITY extendedlibrary.firstrun.notworking "不工作...">
+<!ENTITY extendedlibrary.firstrun.working "工作！！！">
+<!---->
+<!ENTITY extendedlibrary.remove "删除">
+<!ENTITY extendedlibrary.importPlaylist "导入播放列表">
+<!ENTITY extendedlibrary.exportPlaylist "导出播放列表">
+<!---->
+<!ENTITY extendedlibrary.lockScreen "锁定应用程序">
+<!ENTITY extendedlibrary.password "密码">
+<!ENTITY extendedlibrary.confirm "确认">
+<!ENTITY extendedlibrary.lock "OK">
+<!ENTITY extendedlibrary.passwordChanged "密码已更改">
+<!ENTITY extendedlibrary.passwordWrong "密码错误。请重试。">
+<!ENTITY extendedlibrary.passwordSet "密码设置成功">

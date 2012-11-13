@@ -1,0 +1,94 @@
+<!ENTITY extendedlibrary.label "Music Download Center">
+<!ENTITY extendedlibrary.artist "アーティスト">
+<!ENTITY extendedlibrary.title "タイトル">
+<!ENTITY extendedlibrary.search "検索">
+<!ENTITY extendedlibrary.context.download "ダウンロード">
+<!ENTITY extendedlibrary.context.downloadToFolder "フォルダへダウンロード…">
+<!ENTITY extendedlibrary.context.preview "プレビュー">
+<!---->
+<!ENTITY extendedlibrary.service "サービス">
+<!ENTITY extendedlibrary.services "サービス">
+<!ENTITY extendedlibrary.advantages "">
+<!ENTITY extendedlibrary.disadvantages "">
+<!ENTITY extendedlibrary.enabled "有効">
+<!ENTITY extendedlibrary.suggestNewService "新しいサービスを提案">
+<!ENTITY extendedlibrary.appearance "">
+<!ENTITY extendedlibrary.showHideTooltips "ツールチップを表示">
+<!ENTITY extendedlibrary.showMenubar "メニューバーを表示">
+<!ENTITY extendedlibrary.advanced "高度">
+<!ENTITY extendedlibrary.resetFirstRun "初回起動のダイアログを表示">
+<!ENTITY extendedlibrary.resetFirstRun.description "プレビューが動作しない場合は有効にする">
+<!ENTITY extendedlibrary.website "Web サイト">
+<!ENTITY extendedlibrary.bugs "バグ">
+<!---->
+<!ENTITY extendedlibrary.radio "ラジオ">
+<!ENTITY extendedlibrary.genre "ジャンル">
+<!ENTITY extendedlibrary.orSearch "または検索">
+<!ENTITY extendedlibrary.other "その他">
+<!ENTITY extendedlibrary.share "共有">
+<!ENTITY extendedlibrary.email "電子メール">
+<!ENTITY extendedlibrary.link "リンク アドレス">
+<!ENTITY extendedlibrary.urlToPls ".pls ファイルの URL">
+<!ENTITY extendedlibrary.urlToStream "またはストリームの URL">
+<!ENTITY extendedlibrary.pickLocalPls "またはローカルの .pls を選択">
+<!ENTITY extendedlibrary.name "名前">
+<!ENTITY extendedlibrary.listeners "リスナー">
+<!ENTITY extendedlibrary.bookmarks "ブックマーク">
+<!---->
+<!ENTITY extendedlibrary.history "履歴">
+<!ENTITY extendedlibrary.lastPlayed "最後に再生した日時">
+<!ENTITY extendedlibrary.timesPlayed "再生回数">
+<!---->
+<!ENTITY extendedlibrary.menu.file "ファイル">
+<!ENTITY extendedlibrary.menu.file.accesskey "F">
+<!ENTITY extendedlibrary.menu.file.openLocation "場所を開く">
+<!ENTITY extendedlibrary.menu.file.playFileFromUrl "URL からファイルを再生">
+<!ENTITY extendedlibrary.menu.file.playFileFromComputer "ローカル ファイルを再生">
+<!ENTITY extendedlibrary.menu.file.quit "終了">
+<!ENTITY extendedlibrary.menu.file.quit.accesskey "Q">
+<!ENTITY extendedlibrary.menu.tools "ツール">
+<!ENTITY extendedlibrary.menu.tools.accesskey "T">
+<!ENTITY extendedlibrary.menu.tools.settings "設定">
+<!ENTITY extendedlibrary.menu.tools.settings.accesskey "S">
+<!ENTITY extendedlibrary.menu.tools.jsconsole "エラー コンソール">
+<!ENTITY extendedlibrary.menu.tools.downloads "ダウンロード">
+<!ENTITY extendedlibrary.menu.tools.addons "アドオン">
+<!ENTITY extendedlibrary.feedback "フィードバック">
+<!ENTITY extendedlibrary.contribute "貢献">
+<!ENTITY extendedlibrary.translating "翻訳">
+<!ENTITY extendedlibrary.coding "コーディング">
+<!ENTITY extendedlibrary.webdesign "Web デザイン">
+<!ENTITY extendedlibrary.promotion "プロモーション">
+<!ENTITY extendedlibrary.menu.help "ヘルプ">
+<!ENTITY extendedlibrary.menu.help.accesskey "H">
+<!ENTITY extendedlibrary.menu.help.online "オンライン ヘルプ">
+<!ENTITY extendedlibrary.menu.help.online.accesskey "O">
+<!ENTITY extendedlibrary.menu.help.about "バージョン情報">
+<!ENTITY extendedlibrary.menu.help.about.accesskey "A">
+<!ENTITY extendedlibrary.menu.help.checkForUpdates "更新をチェック…">
+<!---->
+<!ENTITY extendedlibrary.internet "インターネット">
+<!ENTITY mybrowser.home "ホーム">
+<!ENTITY mybrowser.back "戻る">
+<!ENTITY mybrowser.forward "進む">
+<!ENTITY mybrowser.reload "更新">
+<!ENTITY mybrowser.stop "停止">
+<!ENTITY mybrowser.go "移動">
+<!---->
+<!ENTITY extendedlibrary.firstrun.description1 "">
+<!ENTITY extendedlibrary.firstrun.description2 "">
+<!ENTITY extendedlibrary.firstrun.doSomething "">
+<!ENTITY extendedlibrary.firstrun.notworking "動作しません…">
+<!ENTITY extendedlibrary.firstrun.working "動作しました!!!">
+<!---->
+<!ENTITY extendedlibrary.remove "削除">
+<!ENTITY extendedlibrary.importPlaylist "プレイリストをインポート">
+<!ENTITY extendedlibrary.exportPlaylist "プレイリストをエクスポート">
+<!---->
+<!ENTITY extendedlibrary.lockScreen "アプリケーションをロック">
+<!ENTITY extendedlibrary.password "パスワード">
+<!ENTITY extendedlibrary.confirm "確認">
+<!ENTITY extendedlibrary.lock "OK">
+<!ENTITY extendedlibrary.passwordChanged "パスワードが変更されました。">
+<!ENTITY extendedlibrary.passwordWrong "パスワードが正しくありません。再試行してください。">
+<!ENTITY extendedlibrary.passwordSet "パスワードが設定されました。">

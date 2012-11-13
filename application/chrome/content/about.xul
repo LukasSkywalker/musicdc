@@ -1,0 +1,74 @@
+<?xml version="1.0"?> <!-- -*- Mode: HTML -*- --> 
+
+<!--* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Creative Commons
+ * Attribution-NonCommercial-ShareAlike Version 3.0, as published
+ * by Creative Commons. See 
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode for
+ * more details. -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?> 
+<?xml-stylesheet href="chrome://mdc/skin/aboutDialog.css" type="text/css"?> 
+
+
+
+<dialog xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        id="aboutDialog"
+		onload="var okbutton=document.documentElement.getButton('accept'); okbutton.focus(); document.getElementById('copyrightInfo').value = 'Copyright 2010-'+(new Date()).getFullYear()+' Lukas Diener';"
+        windowtype="Browser:About"
+		title="Music Download Center"
+        buttons="accept"
+        creditslabel="Copyright"
+        creditsaccesskey="C"
+        aboutlabel="Aboutlink"
+        aboutaccesskey="A">
+<script src="chrome://mdc/content/main.js"/>    
+  <deck id="modes" flex="1">
+    <vbox flex="1" id="clientBox">
+  <separator class="thin"/><separator class="thin"/><separator class="thin"/>
+
+
+	<label id="version" value="Version @VERSION@ (Build @BUILD@)"/>
+      <label id="distribution"/>
+      <label id="distributionId"/>
+	  <label id="extensionDevelopers" class="sectionTitle">Developers</label>
+    <vbox flex="1" id="developersBox" class="boxIndent"/>
+	<html:ul>
+		<html:li><html:a href="http://musicdc.sourceforge.net/wordpress/">Lukas Diener</html:a></html:li>
+	</html:ul>
+    <label id="extensionTranslators" class="sectionTitle">Translators</label>
+	<html:ul>
+		<html:li>de: Lukas Diener (Lukas_Skywalker)</html:li>
+		<html:li>it: Roberto Ferramosca</html:li>
+		<html:li>pt-BR: Edgard Dias Magalhaes</html:li>
+		<html:li>fr: Antoine Turmel (GeekShadow, <html:a href="http://www.geekshadow.com/" class="text-link">www.geekshadow.com</html:a>)</html:li>
+		<html:li>ar: Hassan Khallaf (Zombie Zoom, <html:a href="http://zombiezoom.co.cc/" class="text-link">www.zombiezoom.co.cc</html:a>)</html:li>
+		<html:li>sv-SE: Mikael Hiort af Orn&#228;s</html:li>
+		<html:li>ja-JP: shirayuki</html:li>
+		<html:li>zh-CN: yliu</html:li>
+		<html:li>es-ES: ms4u</html:li>
+	</html:ul>
+    <vbox flex="1" id="translatorsBox" class="boxIndent"/>
+	<label id="extensionContributors" class="sectionTitle">Contributors</label>
+	<html:ul>
+		<html:li>Alain Denzler (Mac Package)</html:li>
+		<html:li>Roberto Ferramosca (Linux Packages, <html:a href="http://www.lffl.org/" class="text-link">www.lffl.org</html:a>)</html:li>
+		<html:li>Yannis Guedel (Website, <html:a href="http://www.guedels.ch" class="text-link">www.guedels.ch</html:a>)</html:li>
+		<html:li> Hovhannes Babayan (Tabbed Browser, <html:a href="http://www.hovhannes.info" class="text-link">www.hovhannes.info</html:a>)</html:li>
+	</html:ul>
+    <vbox flex="1" id="contributorsBox" class="boxIndent"/>
+		<vbox><separator class="groove"/><label id="copyrightInfo" value=""/></vbox>
+		<hbox>
+			<separator flex="1"/>
+			<button label="Donate" onclick="mdc.donate()"/>
+			<separator flex="1"/>
+		</hbox>
+    </vbox>
+	
+  </deck>
+  <separator class="groove" id="groove"/>
+
+
+</dialog>

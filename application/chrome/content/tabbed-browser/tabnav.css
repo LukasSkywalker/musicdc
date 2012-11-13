@@ -1,0 +1,190 @@
+.tabui {
+	min-height:100px;
+	overflow:hidden;
+}
+
+/*.tabui * {
+	-moz-appearance:none;
+	font-size:11px;
+}*/
+
+.tabui > hbox {
+	border-bottom:4px solid;
+	/*-moz-border-bottom-colors: #a1a1a1 #FFF #FFF #FFF;
+	background-color:#214883;*/
+	-moz-box-align:end;
+	padding-top:10px;
+}
+
+.tabui *[anonid="tabs"] {
+	padding-top:2px;
+	min-height:26px;
+	overflow:hidden;
+}
+
+
+.tab-close-button {
+	list-style-image: url('chrome://mdc-platform/skin/icons/process-stop.png');
+}
+
+/* -------------------- Tab styles --------------------- */
+.tabui *[anonid="tabs"] > hbox {
+	-moz-appearance: tab;
+	/*margin-left:6px;
+	-moz-box-align:center;
+	background-color:#FFF;
+	padding: 2px 6px 2px 4px;
+	-moz-user-focus:normal;
+}
+
+.tabui *[anonid="tabs"] > hbox:hover {
+	background-color: #7791b5;
+	-moz-border-top-colors: #7791b5 #7791b5;
+}
+
+.tabui *[anonid="tabs"] > hbox {
+	border-top:2px solid;
+	-moz-border-radius-topleft: 2px;
+  	-moz-border-radius-topright: 2px;
+	-moz-border-top-colors: #6782aa #6782aa;
+	background-color: #6782aa;
+	color:#FFF;
+}
+.tabui *[anonid="tabs"] > hbox[selected="true"] {
+	background-color:#FFF;
+	-moz-border-top-colors: #ffd940 #ffd940;
+	color:#036;
+	font-weight:bold;
+	margin-top:-2px;
+	padding-top:4px;
+}
+.tabui *[anonid="tabs"] > hbox > image {
+	margin-left:2px;
+	margin-bottom:2px;
+	min-width:16px;
+	min-height:16px;
+}
+.tabui *[anonid="tabs"] > hbox > label {
+	margin:0 4px 0 4px !important;
+}
+.tabui *[anonid="tabs"] > hbox > label:first-child {
+	margin:0 0 0 4px !important;
+	padding:0;
+	font-family:monospace;
+	font-size:x-small; vertical-align:top;
+	min-height:16px;*/
+}
+/* ------------------------------------------------------ */
+
+
+
+/* ----------------- Tab buttons styles ----------------- */
+.tabui *[anonid="tab_buttons"]{
+	padding-left:13px;
+	margin-bottom:3px;
+} 
+
+.tabui toolbarbutton[anonid="open_btn"] {
+	padding:0px;
+	width:15px;
+	height:15px;
+	margin:1px;
+	background-color:#6782aa;
+	border:1px solid;
+	border-color:#6782aa;
+	color:#ffffff;
+	font-weight:900;
+}
+
+.tabui toolbarbutton[anonid="left_scroll_btn"],
+.tabui toolbarbutton[anonid="right_scroll_btn"],
+.tabui toolbarbutton[anonid="close_btn"] {
+	padding:0;
+	width:13px;
+	height:15px;
+	margin:1px;
+	background-color:#6782aa;
+	border:1px solid;
+	border-color:#6782aa;
+	list-style-image:url(data:image/gif;base64,R0lGODlhJwAKAJEAAAAAAP%2F%2F%2F%2F%2F%2F%2FwAAACH5BAEAAAIALAAAAAAnAAoAAAIrlI%2Bpy%2B0PWWiTpiqxCvpiToFZh4Diwp1bGpKea7CZoKIwfZ%2F1ZvXHHQkqCgA7);
+	
+}
+.tabui toolbarbutton[anonid="left_scroll_btn"][disabled="true"],
+.tabui toolbarbutton[anonid="right_scroll_btn"][disabled="true"],
+.tabui toolbarbutton[anonid="close_btn"][disabled="true"] {
+	opacity:0.3;
+}
+.tabui toolbarbutton[anonid="left_scroll_btn"]:hover:not([disabled="true"]),
+.tabui toolbarbutton[anonid="right_scroll_btn"]:hover:not([disabled="true"]),
+.tabui toolbarbutton[anonid="close_btn"]:hover:not([disabled="true"]) {
+	border-color:#ffd940;
+}
+.tabui toolbarbutton[anonid="left_scroll_btn"] > image,
+.tabui toolbarbutton[anonid="right_scroll_btn"] > image,
+.tabui toolbarbutton[anonid="close_btn"] > image {
+	margin:0px;
+}
+
+toolbarbutton[anonid="left_scroll_btn"] {
+	-moz-image-region: rect(0px, 13px, 10px, 0px);
+}
+toolbarbutton[anonid="right_scroll_btn"] {
+	-moz-image-region: rect(0px, 26px, 10px, 13px);
+}
+
+toolbarbutton[anonid="close_btn"] {
+	-moz-image-region: rect(0px, 39px, 10px, 26px);
+}
+/* ------------------------------------------------------ */
+
+
+
+/* ------------------- Tooltip styles ------------------- 
+tooltip#popup_tab_preview {
+	-moz-appearance: none !important;
+	background-color:#f5f5f5;
+	border:1px solid #b3b9c3;
+	padding:3px;
+}
+canvas[anonid="tab_preview_canvas"] {
+	border:1px solid #b3b9c3;
+}
+/* ------------------------------------------------------ */
+
+
+
+/* ---------------- Context popup styles ---------------- 
+.tabui popup#popup_tab_context {
+	border:1px solid #b3b9c3;
+	background-color:#f9f8f7;
+	padding:1px !important;
+}
+.tabui menuseparator {
+	background-color:#a6a6a6;
+	border:none;
+	height:1px;
+	max-height:1px;
+	overflow:hidden;
+	margin:1px !important;
+}
+.tabui menuitem, .tabui menuitem[disabled='true']:hover {
+	background-color:#f9f8f7;
+	border:1px solid #f9f8f7;
+	padding:1px !important;
+	margin:1px !important;
+}
+.tabui menuitem > label {
+	padding:2px 1px;
+	color:#000;
+	font-size:10px !important;
+}
+.tabui menuitem[disabled='true'] > label {
+	color:#777;
+}
+.tabui menuitem:hover {
+	background-color:#b6bdd2;
+	border:1px solid #0a246a;
+}
+/* ------------------------------------------------------ */
+
+

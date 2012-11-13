@@ -1,0 +1,15 @@
+@import url(chrome://global/skin/);
+
+radio{
+	list-style-image: url('chrome://mdc-platform/skin/icons/Options.png');
+}
+
+radio[pane=paneMain]{
+	-moz-image-region: rect(0px 32px 32px 0px);
+}
+radio[pane=paneContent]{
+	-moz-image-region: rect(0px 96px 32px 64px);
+}
+radio[pane=paneAdvanced]{
+	-moz-image-region: rect(0px 224px 32px 192px);
+}

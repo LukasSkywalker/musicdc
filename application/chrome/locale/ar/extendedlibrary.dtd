@@ -1,0 +1,94 @@
+<!ENTITY extendedlibrary.label "مركز تنزيل الموسيقي">
+<!ENTITY extendedlibrary.artist "الفنان">
+<!ENTITY extendedlibrary.title "العنوان">
+<!ENTITY extendedlibrary.search "بحث">
+<!ENTITY extendedlibrary.context.download "تنزيل">
+<!ENTITY extendedlibrary.context.downloadToFolder "تنزيل في مجلد…">
+<!ENTITY extendedlibrary.context.preview "عرض">
+<!---->
+<!ENTITY extendedlibrary.service "الخدمة">
+<!ENTITY extendedlibrary.services "الخدمات">
+<!ENTITY extendedlibrary.advantages "المميزات">
+<!ENTITY extendedlibrary.disadvantages "العيوب">
+<!ENTITY extendedlibrary.enabled "مفعَّل">
+<!ENTITY extendedlibrary.suggestNewService "إقترح خدمة جديدة">
+<!ENTITY extendedlibrary.appearance "المظهر">
+<!ENTITY extendedlibrary.showHideTooltips "أظهر نصائح الاستخدام">
+<!ENTITY extendedlibrary.showMenubar "أظهر شريط القائمة">
+<!ENTITY extendedlibrary.advanced "متقدم">
+<!ENTITY extendedlibrary.resetFirstRun "أظهر مربع الحوار الخاص بالتشغيل لأول مرة">
+<!ENTITY extendedlibrary.resetFirstRun.description "فعِّل عندما لا يعمل العرض">
+<!ENTITY extendedlibrary.website "الموقع علي شبكة الانترنت">
+<!ENTITY extendedlibrary.bugs "العيوب">
+<!---->
+<!ENTITY extendedlibrary.radio "الراديو">
+<!ENTITY extendedlibrary.genre "النوع">
+<!ENTITY extendedlibrary.orSearch "أو البحث">
+<!ENTITY extendedlibrary.other "آخر">
+<!ENTITY extendedlibrary.share "شارك">
+<!ENTITY extendedlibrary.email "البريد الإلكتروني">
+<!ENTITY extendedlibrary.link "عنوان الوصلة">
+<!ENTITY extendedlibrary.urlToPls "رابط لملف .pls">
+<!ENTITY extendedlibrary.urlToStream "رابط بث مباشر">
+<!ENTITY extendedlibrary.pickLocalPls "أو إختر ملف .pls محلي">
+<!ENTITY extendedlibrary.name "الاسم">
+<!ENTITY extendedlibrary.listeners "المستمعون">
+<!ENTITY extendedlibrary.bookmarks "العلامات">
+<!---->
+<!ENTITY extendedlibrary.history "التاريخ">
+<!ENTITY extendedlibrary.lastPlayed "آخر مرة تم التشغيل فيها">
+<!ENTITY extendedlibrary.timesPlayed "عدد مرات التشغيل">
+<!---->
+<!ENTITY extendedlibrary.menu.file "ملف">
+<!ENTITY extendedlibrary.menu.file.accesskey "F">
+<!ENTITY extendedlibrary.menu.file.openLocation "إفتح مكان">
+<!ENTITY extendedlibrary.menu.file.playFileFromUrl "شغِّل الملف من الرابط">
+<!ENTITY extendedlibrary.menu.file.playFileFromComputer "شغل ملف من علي جهازك">
+<!ENTITY extendedlibrary.menu.file.quit "أغلق">
+<!ENTITY extendedlibrary.menu.file.quit.accesskey "Q">
+<!ENTITY extendedlibrary.menu.tools "الأدوات">
+<!ENTITY extendedlibrary.menu.tools.accesskey "T">
+<!ENTITY extendedlibrary.menu.tools.settings "الإعدادات">
+<!ENTITY extendedlibrary.menu.tools.settings.accesskey "S">
+<!ENTITY extendedlibrary.menu.tools.jsconsole "نافذة الأخطاء">
+<!ENTITY extendedlibrary.menu.tools.downloads "التنزيلات">
+<!ENTITY extendedlibrary.menu.tools.addons "الإضافات">
+<!ENTITY extendedlibrary.feedback "الإقتراحات و الشكاوي">
+<!ENTITY extendedlibrary.contribute "ساهم">
+<!ENTITY extendedlibrary.translating "الترجمة">
+<!ENTITY extendedlibrary.coding "صناعة الاكواد">
+<!ENTITY extendedlibrary.webdesign "تصميم الشبكة">
+<!ENTITY extendedlibrary.promotion "عرض">
+<!ENTITY extendedlibrary.menu.help "المساعدة">
+<!ENTITY extendedlibrary.menu.help.accesskey "H">
+<!ENTITY extendedlibrary.menu.help.online "المساعدة عبر الانترنت">
+<!ENTITY extendedlibrary.menu.help.online.accesskey "Q">
+<!ENTITY extendedlibrary.menu.help.about "عن البرنامج">
+<!ENTITY extendedlibrary.menu.help.about.accesskey "A">
+<!ENTITY extendedlibrary.menu.help.checkForUpdates "تأكد من التحديثات…">
+<!---->
+<!ENTITY extendedlibrary.internet "الإنترنت">
+<!ENTITY mybrowser.home "الصفحة الرئيسية">
+<!ENTITY mybrowser.back "عودة">
+<!ENTITY mybrowser.forward "إلي الأمام">
+<!ENTITY mybrowser.reload "إعادة التحميل">
+<!ENTITY mybrowser.stop "توقف">
+<!ENTITY mybrowser.go "إذهب">
+<!---->
+<!ENTITY extendedlibrary.firstrun.description1 "مرحباً بك في مركز تنزيل الموسيقي. من فضلك في 20 ثانية تأكد من أن Adobe Flash Player مثبت لديك">
+<!ENTITY extendedlibrary.firstrun.description2 "هل يمكنك مشاهدة المشغِّل بالأسفل و الإستماع إلي الموسيقي؟">
+<!ENTITY extendedlibrary.firstrun.doSomething "إضغط علي 'يعمل!!!' لو كل شيء يعمل علي ما يرام أو علي 'لا يعمل' لتثبيت مشغِّل الفلاش">
+<!ENTITY extendedlibrary.firstrun.notworking "لا يعمل…">
+<!ENTITY extendedlibrary.firstrun.working "يعمل!!!">
+<!---->
+<!ENTITY extendedlibrary.remove "إحذف">
+<!ENTITY extendedlibrary.importPlaylist "إستيرد قائمة التشغيل">
+<!ENTITY extendedlibrary.exportPlaylist "تصدير قائمة التشغيل">
+<!---->
+<!ENTITY extendedlibrary.lockScreen "قفل التطبيق">
+<!ENTITY extendedlibrary.password "كلمة السر">
+<!ENTITY extendedlibrary.confirm "تأكيد">
+<!ENTITY extendedlibrary.lock "حسنا">
+<!ENTITY extendedlibrary.passwordChanged "تم تغيير كلمة السر.">
+<!ENTITY extendedlibrary.passwordWrong "كلمة سر غير صحيحة. من فضلك حاول مرة أخري.">
+<!ENTITY extendedlibrary.passwordSet "تم وضع كلمة السر.">

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>
+
+<window id="hiddenWindow"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/javascript">
+    <![CDATA[
+function myappQuitApplication() {
+    const Cc = Components.classes;
+    const Ci = Components.interfaces;
+    
+    let appStartup = Cc['@mozilla.org/toolkit/app-startup;1'].
+                     getService(Ci.nsIAppStartup);
+    appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
+    
+    return true;
+}
+    ]]>
+    </script>
+  
+    <commandset id="main-commands">
+        <command id="cmd:quit" oncommand="myappQuitApplication();"/>
+    </commandset>
+    
+    <keyset id="ui-keys">
+        <key id="key:quitApp" key="Q" modifiers="accel" command="cmd:quit"/>
+        <key id="key:hideApp" key="H" modifiers="accel"/>
+        <key id="key:hideOthersApp" key="H" modifiers="accel,alt"/>
+    </keyset>
+    
+    <menubar id="main-menubar" hidden="true">
+        <menu id="mac-menu">
+            <menupopup>
+                <menuitem id="menu_mac_hide_app" label="Hide Music Download Center" key="key:hideApp"/>
+                <menuitem id="menu_mac_hide_others" label="Hide Others" key="key:hideOthersApp"/>
+                <menuitem id="menu_mac_show_all" label="Show All"/>
+                <menuitem id="menu_FileQuitItem" label="&extendedlibrary.menu.file.quit;" key="key:quitApp" command="cmd:quit"/>
+            </menupopup>
+        </menu>
+    </menubar>
+</window>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>					
+<overlay id="radio_tab_overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 			
+						<tabpanel id="tab_radio"><!--Radio-->
+							<hbox flex="1">
+								<vbox flex="1">
+									<groupbox>
+										<caption label="IceCast"/>
+										<grid maxwidth="300" minwidth="300">
+											<columns>
+												<column flex="10"/>
+												<column flex="25"/>
+											</columns>
+											<rows>
+												<row>
+													<label value="&extendedlibrary.genre;" />
+													<menulist flex="1" id="radio_genremenulist" onclick="radio.createListBox()" oncommand="radio.listStationOfGenre( this.value );">
+														<menupopup id="radio_genremenupopup">
+															<menuitem hidden="true" id="radio_spacer"/>
+														</menupopup>
+													</menulist>
+													<hbox align="center" pack="end">
+														<image id="throbber_radio" pack="center" align="end" class="throbber" hidden="true"/>
+													</hbox>
+												</row>
+												<!--<row>
+													<label value="&extendedlibrary.orSearch;" />
+													<textbox label="Search" type="search" searchbutton="true" oncommand="radio.fullSearch(this.value)" />
+												</row>-->
+											</rows>
+										</grid>
+									</groupbox>
+									<!--<groupbox>
+										<caption label="&extendedlibrary.other;"/>
+										<grid>
+											<columns>
+												<column flex="2"/>
+												<column flex="5"/>
+											</columns>
+											<rows>
+												<row>
+													<label value="&extendedlibrary.urlToPls;" />
+													<textbox label="Search" type="search" searchbutton="true" oncommand="mdc.play(radio.readPlsFile(this.value), null, null, null)" />
+												</row>
+												<row>
+													<label value="&extendedlibrary.urlToStream;" />
+													<textbox label="Go" type="search" searchbutton="true" oncommand="mdc.play(this.value, null, null, null)" />
+												</row>
+												<row>
+													<label value="&extendedlibrary.pickLocalPls;" />
+													<button disabled="true" label="Browse..." oncommand="mdc.play(radio.readPlsFile(mdc.filePicker('open',null,null, null )).spec, null, null, null)" />
+												</row>
+											</rows>
+										</grid>
+									</groupbox>-->
+									<groupbox flex="1">
+										<caption label="&extendedlibrary.bookmarks;"/>
+											<tree id="bookmarks_tree" flex="1" ondblclick="radio.playShoutCast(this.id);">
+												<treecols>
+													<treecol flex="1" id="stars" ignoreincolumnpicker="true" hidden="true"/>
+													<treecol id="name"  flex="1" label="&extendedlibrary.name;" />
+													<treecol id="id" flex="1" ignoreincolumnpicker="true" hidden="true"/>
+												</treecols>
+												<treechildren id="bookmarks_children" datasources="profile:services.db" ref="*" querytype="storage">
+													<template>
+														<query>
+															select * from bookmarks
+														</query>
+														<action>       
+															<treeitem uri="?" >
+																<treerow>
+																	<treecell label="" />
+																	<treecell label="?name" />
+																	<treecell label="?id" />
+																</treerow>
+															</treeitem>
+														</action>
+													</template>           
+												</treechildren>
+											</tree>
+											<hbox pack="end">
+												<toolbarbutton id="bookmarks-delete-button" class="remove-button" onclick="radio.removeFromBookmarks(document.getElementById('bookmarks_tree'))" minheight="24"/>
+											</hbox>
+									</groupbox>
+								</vbox>
+								<vbox flex="5">
+									<tree id="radio_maintree" flex="1" editable="true" ondblclick="radio.playShoutCast(this.id);">
+										<treecols>
+											<treecol flex="1" id="stars" type="checkbox" editable="true" hideheader="true"/>
+											<treecol flex="10" id="artist" label="&extendedlibrary.name;"/>
+											<treecol flex="1" id="id" ignoreincolumnpicker="true" hidden="true" />
+											<treecol flex="10" id="listeners" label="&extendedlibrary.listeners;"/>
+										</treecols>
+										<treechildren id="radio_treechildren" alternatingbackground="true" onclick="radio.updateBookmarks(event)" >
+										</treechildren>
+									</tree>
+								</vbox>
+							</hbox>
+						</tabpanel>
+</overlay>

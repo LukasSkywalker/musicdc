@@ -1,0 +1,66 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>					
+<overlay id="radio_tab_overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 			
+<toolbar id="toolbar-menubar" type="menubar" class="chromeclass-toolbar" autohide="false" collapsed="false">
+					<toolbaritem id="menubar-items">
+						<menubar id="main-menubar">
+							<menu id="file-menu" label="&extendedlibrary.menu.file;" accesskey="&extendedlibrary.menu.file.accesskey;">
+								<menupopup id="menu_FilePopup">
+									<menuitem label="&extendedlibrary.menu.file.openLocation;" accesskey="" key="key_focus_addressbar" command="cmd_focus_addressbar"/>
+									<menuitem label="&extendedlibrary.menu.file.playFileFromUrl;..." key="key_play_url" command="cmd_play_url"/>
+									<menuitem label="&extendedlibrary.menu.file.playFileFromComputer;..." key="key_play_file" command="cmd_play_file"/>
+									<menuseparator />
+									<menuitem label="&extendedlibrary.importPlaylist;..." key="key_import_pls" command="cmd_import_pls"/>
+									<menuitem label="&extendedlibrary.exportPlaylist;..." key="key_export_pls" command="cmd_export_pls"/>
+									<menuseparator />
+									<menuitem label="&extendedlibrary.lockScreen;" key="key_lock_screen" command="cmd_lock_screen" />
+									<menuseparator id="menu_FileQuitSeparator"/>
+									<menuitem id="menu_FileQuitItem" label="&extendedlibrary.menu.file.quit;" accesskey="&extendedlibrary.menu.file.quit.accesskey;" key="key_file_close" command="cmd_file_close"/>
+								</menupopup>
+							</menu>
+						<!--<menu id="bookmarks-menu" label="extendedlibrary.menu.bookmarks;">
+								<menupopup id="menu_BookmarksPopup">
+									<menuitem label="&extendedlibrary.menu.bookmarks.bookmarkCurrentSong;" oncommand="mdc.bookmarkCurrentSong()"/>
+									<menuitem label="&extendedlibrary.menu.bookmarks.showBookmarks;" oncommand="window.open('chrome://mdc/content/bookmarks.xul','_blank','chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar,width=500,height=400')"/>
+								</menupopup>
+							</menu>-->
+							<menu id="tools-menu" label="&extendedlibrary.menu.tools;" accesskey="&extendedlibrary.menu.tools.accesskey;">
+								<menupopup id="menu_ToolsPopup">
+									<menuitem label="&extendedlibrary.search;" key="key_focus_searchbar" command="cmd_focus_searchbar"/>
+									<menuseparator/>
+									<menuitem label="&extendedlibrary.menu.tools.addons;" key="key_tools_addons" command="cmd_tools_addons"/>
+									<menuitem label="&extendedlibrary.menu.tools.downloads;" key="key_tools_downloads" command="cmd_tools_downloads"/>
+									<menuitem label="&extendedlibrary.menu.tools.jsconsole;" key="key_tools_console" command="cmd_tools_console"/>
+									<menuseparator id="menu_PrefsSeparator"/>
+									<menuitem id="menu_preferences" label="&extendedlibrary.menu.tools.settings;" accesskey="&extendedlibrary.menu.tools.settings.accesskey;" command="cmd_tools_settings"/>
+								</menupopup>
+							</menu>
+							<menu id="help-menu" label="&extendedlibrary.menu.help;" accesskey="&extendedlibrary.menu.help.accesskey;">
+								<menupopup id="menu_HelpPopup">
+								  <menuitem label="&extendedlibrary.menu.help.online;" accesskey="&extendedlibrary.menu.help.online.accesskey;" key="key_help_online" command="cmd_help_online"/>
+								  <menuitem label="&extendedlibrary.feedback;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=59')"/>
+								  <menu id="contrib-menu" label="&extendedlibrary.contribute;">
+									<menupopup id="contrib-popup">
+										<menuitem label="&extendedlibrary.translating;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=61#Translating')"/>
+										<menuitem label="&extendedlibrary.coding;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=61#Coding_or_Webdesign')"/>
+										<menuitem label="&extendedlibrary.webdesign;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=61#Coding_or_Webdesign')"/>
+										<menuitem label="&extendedlibrary.promotion;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=61#Promotion')"/>
+										<menuitem label="&extendedlibrary.other;" oncommand="mdc.openlinkInternal('http://musicdc.sourceforge.net/wordpress/?page_id=61#Other')"/>
+									</menupopup>
+								  </menu>
+								  <menuitem label="&extendedlibrary.menu.help.checkForUpdates;" oncommand="mdc.checkForUpdates()"/>
+								  <menuseparator id="aboutSeparator"/>
+								  <menuitem id="aboutName" label="&extendedlibrary.menu.help.about;" accesskey="&extendedlibrary.menu.help.about.accesskey;" oncommand="mdc.openWindow('chrome://mdc/content/about.xul', 'Browser:About')"/>
+								</menupopup>
+							</menu>
+						</menubar>
+					</toolbaritem>
+				</toolbar>
+</overlay>

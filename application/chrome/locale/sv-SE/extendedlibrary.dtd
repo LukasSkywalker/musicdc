@@ -1,0 +1,94 @@
+<!ENTITY extendedlibrary.label "Hämtningscentralen för musik">
+<!ENTITY extendedlibrary.artist "Artist">
+<!ENTITY extendedlibrary.title "Titel">
+<!ENTITY extendedlibrary.search "Sök">
+<!ENTITY extendedlibrary.context.download "Ladda ner">
+<!ENTITY extendedlibrary.context.downloadToFolder "Ladda ner till mapp…">
+<!ENTITY extendedlibrary.context.preview "Förhandsgranska">
+<!-- SERVICEMAN -->
+<!ENTITY extendedlibrary.service "Tjänst">
+<!ENTITY extendedlibrary.services "Tjänster">
+<!ENTITY extendedlibrary.advantages "Fördelar">
+<!ENTITY extendedlibrary.disadvantages "Nackdelar">
+<!ENTITY extendedlibrary.enabled "Aktiverat">
+<!ENTITY extendedlibrary.suggestNewService "Föreslå en ny tjänst">
+<!ENTITY extendedlibrary.appearance "Utseende">
+<!ENTITY extendedlibrary.showHideTooltips "Visa verktygstips">
+<!ENTITY extendedlibrary.showMenubar "Visa menyraden">
+<!ENTITY extendedlibrary.advanced "Avancerat">
+<!ENTITY extendedlibrary.resetFirstRun "Visa dialogen &quot;Första körningen&quot;">
+<!ENTITY extendedlibrary.resetFirstRun.description "aktivera när förhandsgranskningen inte fungerar">
+<!ENTITY extendedlibrary.website "Webbplats">
+<!ENTITY extendedlibrary.bugs "Buggar">
+<!-- RADIO -->
+<!ENTITY extendedlibrary.radio "Radio">
+<!ENTITY extendedlibrary.genre "Genre">
+<!ENTITY extendedlibrary.orSearch "eller Sök">
+<!ENTITY extendedlibrary.other "Övrigt">
+<!ENTITY extendedlibrary.share "Dela">
+<!ENTITY extendedlibrary.email "E-post">
+<!ENTITY extendedlibrary.link "Länkadress">
+<!ENTITY extendedlibrary.urlToPls "URL till .pls-fil">
+<!ENTITY extendedlibrary.urlToStream "eller URL till Ström">
+<!ENTITY extendedlibrary.pickLocalPls "eller välj lokal .pls">
+<!ENTITY extendedlibrary.name "Namn">
+<!ENTITY extendedlibrary.listeners "Lyssnare">
+<!ENTITY extendedlibrary.bookmarks "Bokmärken">
+<!-- HISTORY -->
+<!ENTITY extendedlibrary.history "Historik">
+<!ENTITY extendedlibrary.lastPlayed "Senast spelad">
+<!ENTITY extendedlibrary.timesPlayed "Antal spelningar">
+<!-- MENU -->
+<!ENTITY extendedlibrary.menu.file "Arkiv">
+<!ENTITY extendedlibrary.menu.file.accesskey "A">
+<!ENTITY extendedlibrary.menu.file.openLocation "Öppna plats">
+<!ENTITY extendedlibrary.menu.file.playFileFromUrl "Spela upp fil från URL">
+<!ENTITY extendedlibrary.menu.file.playFileFromComputer "Spela upp lokal fil">
+<!ENTITY extendedlibrary.menu.file.quit "Avsluta">
+<!ENTITY extendedlibrary.menu.file.quit.accesskey "v">
+<!ENTITY extendedlibrary.menu.tools "Verktyg">
+<!ENTITY extendedlibrary.menu.tools.accesskey "V">
+<!ENTITY extendedlibrary.menu.tools.settings "Inställningar">
+<!ENTITY extendedlibrary.menu.tools.settings.accesskey "I">
+<!ENTITY extendedlibrary.menu.tools.jsconsole "Felkonsol">
+<!ENTITY extendedlibrary.menu.tools.downloads "Nerladdningar">
+<!ENTITY extendedlibrary.menu.tools.addons "Tillägg">
+<!ENTITY extendedlibrary.feedback "Feedback">
+<!ENTITY extendedlibrary.contribute "Bidra">
+<!ENTITY extendedlibrary.translating "Översättning">
+<!ENTITY extendedlibrary.coding "Kodning">
+<!ENTITY extendedlibrary.webdesign "Webbdesign">
+<!ENTITY extendedlibrary.promotion "Reklam">
+<!ENTITY extendedlibrary.menu.help "Hjälp">
+<!ENTITY extendedlibrary.menu.help.accesskey "H">
+<!ENTITY extendedlibrary.menu.help.online "Onlinehjälp">
+<!ENTITY extendedlibrary.menu.help.online.accesskey "n">
+<!ENTITY extendedlibrary.menu.help.about "Om">
+<!ENTITY extendedlibrary.menu.help.about.accesskey "O">
+<!ENTITY extendedlibrary.menu.help.checkForUpdates "Sök efter uppdateringar…">
+<!-- INTERNET -->
+<!ENTITY extendedlibrary.internet "Internet">
+<!ENTITY mybrowser.home "Startsidan">
+<!ENTITY mybrowser.back "Bakåt">
+<!ENTITY mybrowser.forward "Framåt">
+<!ENTITY mybrowser.reload "Uppdatera">
+<!ENTITY mybrowser.stop "Stopp">
+<!ENTITY mybrowser.go "Gå till">
+<!-- FIRSTUN -->
+<!ENTITY extendedlibrary.firstrun.description1 "Välkommen till Hämtningscentralen för musik. Var vänlig ta 20 sekunder för att säkerställa att du har Adobe Flash Player installerat.">
+<!ENTITY extendedlibrary.firstrun.description2 "Kan du se spelaren nedan och lyssna på musiken?">
+<!ENTITY extendedlibrary.firstrun.doSomething "Klicka på &quot;Fungerar!&quot; om allting fungerar som det skall eller &quot;Fungerar inte...&quot; för att installera Flash Player.">
+<!ENTITY extendedlibrary.firstrun.notworking "Fungerar inte…">
+<!ENTITY extendedlibrary.firstrun.working "Fungerar!">
+<!-- OTHER -->
+<!ENTITY extendedlibrary.remove "Ta bort">
+<!ENTITY extendedlibrary.importPlaylist "Importera spellista">
+<!ENTITY extendedlibrary.exportPlaylist "Exportera spellista">
+<!---->
+<!ENTITY extendedlibrary.lockScreen "Lås program">
+<!ENTITY extendedlibrary.password "Lösenord">
+<!ENTITY extendedlibrary.confirm "Bekräfta">
+<!ENTITY extendedlibrary.lock "OK">
+<!ENTITY extendedlibrary.passwordChanged "Lösenordet har ändrats.">
+<!ENTITY extendedlibrary.passwordWrong "Felaktigt lösenord. Var vänlig försök igen.">
+<!ENTITY extendedlibrary.passwordSet "Ditt lösenord har ställts in.">

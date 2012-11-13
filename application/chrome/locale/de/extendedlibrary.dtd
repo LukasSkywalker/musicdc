@@ -1,0 +1,94 @@
+<!ENTITY extendedlibrary.label "Music Download Center">
+<!ENTITY extendedlibrary.artist "Interpret">
+<!ENTITY extendedlibrary.title "Titel">
+<!ENTITY extendedlibrary.search "Suche">
+<!ENTITY extendedlibrary.context.download "Download">
+<!ENTITY extendedlibrary.context.downloadToFolder "Download in Ordner...">
+<!ENTITY extendedlibrary.context.preview "Vorschau">
+<!---->
+<!ENTITY extendedlibrary.service "Dienst">
+<!ENTITY extendedlibrary.services "Dienste">
+<!ENTITY extendedlibrary.advantages "Vorteile">
+<!ENTITY extendedlibrary.disadvantages "Nachteile">
+<!ENTITY extendedlibrary.enabled "Aktiviert">
+<!ENTITY extendedlibrary.suggestNewService "Neuen Service vorschlagen">
+<!ENTITY extendedlibrary.appearance "Aussehen">
+<!ENTITY extendedlibrary.showHideTooltips "Tooltips anzeigen">
+<!ENTITY extendedlibrary.showMenubar "Menuleiste anzeigen">
+<!ENTITY extendedlibrary.advanced "Erweitert">
+<!ENTITY extendedlibrary.resetFirstRun "Startdialog anzeigen">
+<!ENTITY extendedlibrary.resetFirstRun.description "bei nicht funktionierender Vorschau aktivieren">
+<!ENTITY extendedlibrary.website "Website">
+<!ENTITY extendedlibrary.bugs "Bugs">
+<!---->
+<!ENTITY extendedlibrary.radio "Radio">
+<!ENTITY extendedlibrary.genre "Genre">
+<!ENTITY extendedlibrary.orSearch "oder Suche">
+<!ENTITY extendedlibrary.other "Andere">
+<!ENTITY extendedlibrary.share "Teilen">
+<!ENTITY extendedlibrary.email "E-Mail">
+<!ENTITY extendedlibrary.link "Link Adresse">
+<!ENTITY extendedlibrary.urlToPls "URL zu .pls-Datei">
+<!ENTITY extendedlibrary.urlToStream "oder URL zu Stream">
+<!ENTITY extendedlibrary.pickLocalPls "oder lokale .pls-Datei">
+<!ENTITY extendedlibrary.name "Name">
+<!ENTITY extendedlibrary.listeners "Zuhörer">
+<!ENTITY extendedlibrary.bookmarks "Lesezeichen">
+<!---->
+<!ENTITY extendedlibrary.history "Verlauf">
+<!ENTITY extendedlibrary.lastPlayed "Letzte Wiedergabe">
+<!ENTITY extendedlibrary.timesPlayed "Anzahl Wiedergaben">
+<!---->
+<!ENTITY extendedlibrary.menu.file "Datei">
+<!ENTITY extendedlibrary.menu.file.accesskey "D">
+<!ENTITY extendedlibrary.menu.file.openLocation "Ort öffnen">
+<!ENTITY extendedlibrary.menu.file.playFileFromUrl "Datei von URL wiedergeben">
+<!ENTITY extendedlibrary.menu.file.playFileFromComputer "Lokale Datei wiedergeben">
+<!ENTITY extendedlibrary.menu.file.quit "Beenden">
+<!ENTITY extendedlibrary.menu.file.quit.accesskey "B">
+<!ENTITY extendedlibrary.menu.tools "Extras">
+<!ENTITY extendedlibrary.menu.tools.accesskey "E">
+<!ENTITY extendedlibrary.menu.tools.settings "Einstellungen...">
+<!ENTITY extendedlibrary.menu.tools.settings.accesskey "n">
+<!ENTITY extendedlibrary.menu.tools.jsconsole "Fehlerkonsole...">
+<!ENTITY extendedlibrary.menu.tools.downloads "Downloads">
+<!ENTITY extendedlibrary.menu.tools.addons "Add-Ons...">
+<!ENTITY extendedlibrary.feedback "Feedback">
+<!ENTITY extendedlibrary.contribute "Beitragen">
+<!ENTITY extendedlibrary.translating "Übersetzen">
+<!ENTITY extendedlibrary.coding "Programmieren">
+<!ENTITY extendedlibrary.webdesign "Webdesign">
+<!ENTITY extendedlibrary.promotion "Werbung">
+<!ENTITY extendedlibrary.menu.help "Hilfe">
+<!ENTITY extendedlibrary.menu.help.accesskey "H">
+<!ENTITY extendedlibrary.menu.help.online "Onlinehilfe">
+<!ENTITY extendedlibrary.menu.help.online.accesskey "O">
+<!ENTITY extendedlibrary.menu.help.about "Über">
+<!ENTITY extendedlibrary.menu.help.about.accesskey "Ü">
+<!ENTITY extendedlibrary.menu.help.checkForUpdates "Update suchen...">
+<!---->
+<!ENTITY extendedlibrary.internet "Internet">
+<!ENTITY mybrowser.home "Startseite">
+<!ENTITY mybrowser.back "Zurück">
+<!ENTITY mybrowser.forward "Vorwärts">
+<!ENTITY mybrowser.reload "Aktualisieren">
+<!ENTITY mybrowser.stop "Stop">
+<!ENTITY mybrowser.go "Los">
+<!---->
+<!ENTITY extendedlibrary.firstrun.description1 "Willkommen bei Music Download Center. Bitte nehmen Sie sich 20 Sekunden, um sicherzustellen, dass Sie den Adobe Flash Player installiert haben.">
+<!ENTITY extendedlibrary.firstrun.description2 "Ist der Player sichtbar und läuft die Musik?">
+<!ENTITY extendedlibrary.firstrun.doSomething "Klick auf 'Funktioniert' wenn alles gut läuft oder 'Funktioniert nicht...' um zur Installation von Flash Player zu gelangen.">
+<!ENTITY extendedlibrary.firstrun.notworking "Funktioniert nicht...">
+<!ENTITY extendedlibrary.firstrun.working "Funktioniert">
+<!---->
+<!ENTITY extendedlibrary.remove "Entfernen">
+<!ENTITY extendedlibrary.importPlaylist "Wiedergabeliste importieren">
+<!ENTITY extendedlibrary.exportPlaylist "Wiedergabeliste exportieren">
+<!---->
+<!ENTITY extendedlibrary.lockScreen "Programm sperren">
+<!ENTITY extendedlibrary.password "Passwort">
+<!ENTITY extendedlibrary.confirm "Wiederholen">
+<!ENTITY extendedlibrary.lock "OK">
+<!ENTITY extendedlibrary.passwordChanged "Das Passwort wurde geändert.">
+<!ENTITY extendedlibrary.passwordWrong "Falsches Passwort. Bitte noch einmal versuchen.">
+<!ENTITY extendedlibrary.passwordSet "Password wurde gesetzt.">

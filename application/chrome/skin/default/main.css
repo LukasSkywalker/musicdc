@@ -1,0 +1,98 @@
+@import url(chrome://global/skin/);
+/* toolbar ----------------------------------------------------------------- */
+
+toolbar[mode="icons"] .toolbarbutton-text {
+  display: none !important;
+}
+
+toolbar[mode="text"] .toolbarbutton-icon {
+  display: none;
+}
+
+.toolbarbutton-1 {
+  -moz-box-orient: horizontal;
+  min-height: 24px;
+  max-height: 30px;
+  min-width: 24px;
+  max-width: 30px;
+}
+
+.toolbarbutton-textbox{
+	min-height:24px;
+  max-height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  padding-top: -6px;
+}
+/*top-right-bottom-left*/
+
+.remove-button{
+	list-style-image: url('chrome://mdc-platform/skin/icons/item-remove.png');
+}
+
+.throbber{
+	list-style-image: url('chrome://mdc/skin/throbber.apng');
+}
+
+treechildren::-moz-tree-checkbox {
+  /* nicht angewählte Baumzellen. Dieser Deklaration MUSS vor treechildren::-moz-tree-checkbox(checked) erfolgen, sonst führt es zu keinem Effekt.  */
+  list-style-image: url("chrome://mdc/skin/icons/bookmark.png");
+  -moz-image-region: rect(0px 32px 16px 16px);
+}
+
+treechildren::-moz-tree-checkbox(checked)
+{
+    /* css for checked cells */
+    list-style-image: url("chrome://mdc/skin/icons/bookmark.png");
+	-moz-image-region: rect(0px 48px 16px 32px);
+}
+
+#go-button,#search-go-button{
+	list-style-image: url("chrome://mdc-platform/skin/icons/system-search.png");
+}
+
+#search-stop-button{
+	list-style-image: url("chrome://mdc-platform/skin/icons/process-stop.png");
+}
+
+richlistitem{
+	display:-moz-grid-line;
+	-moz-box-orient:horizontal;
+}
+
+
+richlistitem[mode='downloading']{
+	background-color: #ffff00;
+	display:-moz-grid-line;
+	-moz-box-orient:horizontal;
+}
+
+richlistitem[mode='complete']{
+	background-color: #00ff00;
+	display:-moz-grid-line;
+	-moz-box-orient:horizontal;
+}
+
+listitem[playing='true']{
+	 font-weight:bold;
+}
+
+#menubar-tree, #playlist-tree{
+	margin-right: 0em;
+	border: 0px;
+}
+
+#icon-mdc{
+	list-style-image: url("chrome://mdc/skin/icons/icon16.ico");
+}
+#icon-shoutcast{
+	list-style-image: url("chrome://mdc/skin/icons/radio.gif");
+}
+#icon-google{
+	list-style-image: url("http://www.google.com/favicon.ico");
+}
+
+toolbar, statusbar, statusbarpanel, tabbox, tabpanels{
+	margin: 0em;
+	border: 0px;
+}

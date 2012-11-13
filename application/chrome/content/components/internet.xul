@@ -1,0 +1,42 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>					
+<overlay id="radio_tab_overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 			
+						<tabpanel id="tab_internet"><!--Browser-->
+							<vbox id="browser_main" flex="1">
+							<hbox flex="1">
+								<tabnav id="tabbed-browser" uidprefix="1234" flex="1"/>
+							</hbox><!--<browser flex="1" id="browser" src="" type="content-primary" autocompletepopup="popup_autocomplete"/>-->
+								<splitter id="webscraper_splitter" collapse="after" resizeafter="farthest" state="collapsed">
+									<grippy/>
+								</splitter>
+								<richlistbox id="webscraper_listbox" rows="4" maxheight="150" value="" ondblclick="var url = this.selectedItem.id; mdc.play(mdc.getTagsFromFilename(url)[0], mdc.getTagsFromFilename(url)[1], url, null, null)">
+									<grid>
+										<columns >
+										<column label="" flex="0.1"/>
+											<column label="&extendedlibrary.menu.file;" flex="1"/><column label="&extendedlibrary.context.download;" flex="0.1"/>
+										</columns>
+										<rows id="webscraper_rows">
+										</rows>
+									</grid>
+								</richlistbox>
+								<statusbar id="browser-statusbar" hidden="false">
+									<statusbarpanel flex="6" pack="start">
+										<label id="browser-statusmessage" value="" style="font-style: italic"/>
+										<label id="security" value="" style="" collapsed="true"/>
+									</statusbarpanel>
+									<statusbarpanel flex="10">
+									</statusbarpanel>
+									<statusbarpanel flex="2" pack="end">
+										<progressmeter id="browser-progress" mode="determined" value="0%"/>
+									</statusbarpanel>						
+								</statusbar>
+							</vbox>
+						</tabpanel>
+</overlay>

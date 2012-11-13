@@ -1,0 +1,827 @@
+<?xml version="1.0"?>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:xbl="http://www.mozilla.org/xbl" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml">
+
+<!--
+(c) 2009-2011 Hovhannes Babayan <http://www.hovhannes.info>
+Feel free to modify this code and/or include in any types of projects.
+Just keep this header as is, without modifications.
+-->
+<binding id="tabnav">
+	<resources>
+    	<stylesheet src="tabnav.css"/>
+    </resources>
+    
+	<content>
+		<xul:vbox class="tabui" xbl:inherits="flex,class">
+			<xul:hbox>
+				<xul:hbox anonid="tabs" flex="1" 
+						deflabel="New Tab" 
+						uidprefix2="_uid_" xbl:inherits="uidprefix1=uidprefix"
+						onoverflow="calcScrollLimits();"
+						onunderflow="calcScrollLimits();"
+					/>
+				<xul:hbox anonid="tab_buttons">
+					<xul:toolbarbutton class="close-button" anonid="open_btn" disabled="false" label="+"
+							oncommand="oncmnd_newTab();"
+						/>
+					<xul:toolbarbutton anonid="left_scroll_btn" disabled="true" 
+							onmousedown="begin_scroll('L');"
+							onmouseup="end_scroll();"
+							onmouseout="end_scroll();"
+						/>
+					<xul:toolbarbutton anonid="right_scroll_btn" disabled="true"
+							onmousedown="begin_scroll('R');"
+							onmouseup="end_scroll();"
+							onmouseout="end_scroll();" 
+						/>
+					<xul:toolbarbutton anonid="close_btn" disabled="true" 
+							oncommand="oncmnd_closeTab();" hidden="true"
+						/>
+				</xul:hbox>
+			</xul:hbox>
+			<xul:deck anonid="tab_panels" flex="1"/>
+		
+			<xul:popup id="popup_tab_context" anonid="popup_tab_context" onpopupshowing="onpopupshowing_tabContext()">
+				<xul:menuitem anonid="item_close_tab" label="Close tab" oncommand="oncmnd_closeTab(true)" class="menuitem-non-iconic"/>
+				<xul:menuitem anonid="item_close_but_tab" label="Close all tabs but this" oncommand="oncmnd_closeTab(true,true)" class="menuitem-non-iconic"/>
+				<xul:menuseparator anonid="item_close_tab_sep"/>
+				<xul:menuitem anonid="item_reload_tab" label="Reload tab" oncommand="oncmnd_reloadTab()" class="menuitem-non-iconic"/>
+				<xul:menuseparator anonid="item_move_tab_sep"/>
+				<xul:menuitem anonid="item_move_tab_right" label="Shift to right" oncommand="oncmnd_shiftTab(1)" class="menuitem-non-iconic"/>
+				<xul:menuitem anonid="item_move_tab_left" label="Shift to left" oncommand="oncmnd_shiftTab(-1)" class="menuitem-non-iconic"/>
+			</xul:popup>
+		
+			<xul:popupset>
+				<xul:tooltip id="popup_tab_preview" position="after_pointer" onpopupshowing="onpopupshowing_tabPreview()">
+					<html:canvas anonid="tab_preview_canvas"></html:canvas>
+				</xul:tooltip>
+				
+				
+			</xul:popupset>
+		</xul:vbox>
+	</content>
+	
+	<implementation implements="nsITimerCallback">
+		<field name="m_oTabs" readonly="true">this.a$('tabs');</field>
+		<field name="m_oTabButtons" readonly="true">this.a$('tab_buttons');</field>
+		<field name="m_oTabPanels" readonly="true">this.a$('tab_panels');</field>
+		<field name="m_oLeftScrollBtn" readonly="true">this.a$('left_scroll_btn');</field>
+		<field name="m_oRightScrollBtn" readonly="true">this.a$('right_scroll_btn');</field>
+		<field name="m_oCloseBtn" readonly="true">this.a$('close_btn');</field>
+		<field name="m_nCurrentContextTabIndex">-1</field>
+		<field name="m_nScrollAmount">0</field>
+		<field name="m_nScrollDelta" readonly="true">3</field>
+		<field name="m_nScrollMax">0</field>
+		<field name="m_sScrollDir">""</field>
+		<field name="m_oScrollTimer">null</field>
+		<field name="m_bTabsLocked">false</field>
+	
+		<property name="currentBrowser" readonly="true" onget="return this.getTabBrowser(this.currentIndex);" />
+		
+		<property name="currentIndex">
+			<getter>
+				<![CDATA[
+				for(var i=this.m_oTabs.childNodes.length-1; i>=0; i--)
+				{
+					if(this.m_oTabs.childNodes[i].getAttribute("selected") == "true") return i;
+				}
+				return -1;
+				]]>
+			</getter>
+			<setter>
+				<![CDATA[
+				if(this.checkTabIndexRange(val)) {
+					alert("currentIndex_setter: Tab index out of range!");
+					return;
+				}
+				this.tabWalk( function(oTab) {oTab.setAttribute("selected","false");} );
+				this.m_oTabs.childNodes[val].setAttribute("selected","true");
+				this.m_oTabPanels.selectedPanel = this.getTabBrowser(val);
+				this.calcScrollLimits();
+				this.updateCloseButton();
+				this.m_oTabPanels.selectedPanel.focus();
+				]]>
+			</setter>
+		</property>
+				  
+		<property name="currentUID" readonly="true" onget="return this.getTabUID(this.currentIndex);" />
+				  
+		<method name="addTab">
+			<parameter name="url"/>
+			<parameter name="label"/>
+			<parameter name="imageURL"/>
+			<parameter name="tabGroupID"/>
+			<parameter name="bActive"/>
+			<parameter name="bLocked"/>
+			<parameter name="sUID"/>
+			<body>
+				<![CDATA[
+				if(this.m_bTabsLocked) return;
+				var prefix = this.m_oTabs.getAttribute("uidprefix1") + this.m_oTabs.getAttribute("uidprefix2");
+				var uid=0;
+				if(sUID) {
+					if(sUID.indexOf(prefix)==0 && !isNaN(parseInt(sUID.substr(prefix.length))) )
+					{
+						uid = sUID;
+					}
+					else uid=this.getNextAvailableUID();
+				}
+				else uid=this.getNextAvailableUID();
+				 
+				var XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+				var oBrowser = document.createElement("browser");
+				oBrowser.addEventListener("DOMContentLoaded", function(aEvent){
+					var doc = aEvent.originalTarget.body.innerHTML;
+					if(aEvent.originalTarget.nodeName == "#document" && (aEvent.originalTarget.defaultView.location.href == oBrowser.currentURI.spec))
+						mybrowser.loadWebScraper(doc);
+				}, true);
+				oBrowser.setAttribute("src", url);
+				oBrowser.setAttribute("uid", uid);
+				oBrowser.setAttribute("type", "content-primary");
+				
+				this.m_oTabPanels.appendChild(oBrowser);
+				
+				var spacer = document.createElement('spacer');
+				spacer.setAttribute('flex', 1);
+				
+				var closeButton = document.createElement('toolbarbutton');
+				closeButton.setAttribute("class","remove-button");
+				closeButton.setAttribute("maxWidth","10px");
+				closeButton.setAttribute("minWidth","10px");
+				closeButton.setAttribute("maxHeigth","10px");
+				closeButton.setAttribute("minHeigth","10px");
+				closeButton.setAttribute("onclick", "var browser = document.getElementById('tabbed-browser'); browser.removeTab(browser.getTabIndexByUID(parentNode.getAttribute('uid')))");
+				var oTab = document.createElementNS(XULNS, "hbox");
+				oTab.setAttribute("uid",uid);
+				oTab.setAttribute("tab_group",tabGroupID || "");
+				oTab.setAttribute("tab_group_id", (tabGroupID!="") ? this.generateGroupID(tabGroupID) : "");
+				oTab.setAttribute("tooltip","popup_tab_preview");
+				oTab.setAttribute("context","popup_tab_context");
+				oTab.setAttribute("onclick","parentNode.parentNode.parentNode.parentNode.onclick_tab(event)");
+				oTab.setAttribute("onmousedown","parentNode.parentNode.parentNode.parentNode.onmousedown_tab(event)");
+				oTab.setAttribute('minwidth', '200');
+				oTab.setAttribute('maxwidth', '250');
+				oTab.setAttribute('align', 'center');
+				oTab.appendChild( document.createElementNS(XULNS, "label") );
+				oTab.appendChild( document.createElementNS(XULNS, "image") );
+				oTab.appendChild( document.createElementNS(XULNS, "label") );
+				this.m_oTabs.appendChild(oTab);
+				oTab.appendChild(spacer);
+				oTab.appendChild(closeButton);
+				
+				var tabIndex = this.getTabCount()-1;
+				if(tabIndex==0) bActive = true;  //always select single tab
+				if(bActive) this.currentIndex = tabIndex;
+				
+				this.changeTabLabel(tabIndex,label);
+				this.changeTabImage(tabIndex,imageURL);
+				this.lockTab(tabIndex, bLocked);
+				if(bActive) this.makeTabVisible(tabIndex);
+				if(document.getElementById('tabbed-browser').getTabCount() == 1){
+					mybrowser.onTabChange( true );
+				}else{
+					mybrowser.onTabChange( false );
+				}
+				document.getElementById('urlbar').select();
+				mybrowser.addPL( uid );
+				]]>
+			</body>
+		</method>
+		
+		<!-- Pass true, to disable tab reloading, removing and adding. Pass false to unlock -->
+		<method name="lockTabs">
+			<parameter name="bLock"/>
+			<body><![CDATA[ this.m_bTabsLocked = bLock; ]]></body>
+		</method>
+		
+		<method name="changeTabLabel">
+			<parameter name="tabIndex"/>
+			<parameter name="label"/>
+			<body>
+				<![CDATA[ 
+				if(this.checkTabIndexRange(tabIndex, "method changeTabLabel: ")) return;
+				var oTab = this.m_oTabs.childNodes[tabIndex];
+				var sLabel = (label!="") ? label : this.m_oTabs.getAttribute("deflabel");
+				if(oTab.getAttribute("tab_group")!="")
+				{
+					oTab.childNodes[0].setAttribute("value",oTab.getAttribute("tab_group_id"));
+				}
+				oTab.childNodes[2].setAttribute("value",sLabel);
+				this.calcScrollLimits();
+				]]>
+			</body>
+		</method>
+		
+		<method name="changeTabImage">
+			<parameter name="tabIndex"/>
+			<parameter name="imageURL"/>
+			<body>
+				<![CDATA[ 
+				if(this.checkTabIndexRange(tabIndex, "method changeTabImage: ")) return;
+				var oImage = this.m_oTabs.childNodes[tabIndex].childNodes[1];
+				oImage.setAttribute("src",imageURL);
+				oImage.setAttribute("hidden", !imageURL );
+				this.calcScrollLimits();
+				]]>
+			</body>
+		</method>
+		
+		<method name="getBrowserByUID">
+			<parameter name="uid"/>
+			<body>
+				<![CDATA[
+					return this.getTabBrowser(this.getTabIndexByUID(uid));
+				]]>
+			</body>
+		</method>
+		
+		<method name="removeTab">
+			<parameter name="tabIndex"/>
+			<body>
+				<![CDATA[
+				if(this.m_bTabsLocked) return;
+				if(this.checkTabIndexRange(tabIndex, "method removeTab: ")) return;
+				var curIndex = this.currentIndex;
+				var newIndex = curIndex;
+				if(tabIndex<curIndex)	//tab at the left of selected tab will be removed, move selection to left
+				{
+					newIndex--;
+					if(newIndex<0) newIndex=0;
+				}
+				else {
+					if(this.getTabCount()-1==newIndex) newIndex--;
+				}
+				this.m_oTabPanels.removeChild(this.getTabBrowser(tabIndex));
+				this.m_oTabs.removeChild(this.m_oTabs.childNodes[tabIndex]);
+				if(this.getTabCount()>0)
+				{
+					this.currentIndex = newIndex;
+					this.makeTabVisible(newIndex);
+				}
+				this.calcScrollLimits();
+				this.updateCloseButton();
+				mybrowser.onTabChange( false );
+				]]>
+			</body>
+		</method>
+		
+		<method name="getTabIndexByUID">
+			<parameter name="uid"/>
+			<body>
+				<![CDATA[
+				for(var i=this.m_oTabs.childNodes.length-1; i>=0; i--)
+				{
+					if(this.m_oTabs.childNodes[i].getAttribute("uid") == uid) return i;
+				}
+				return -1;
+				]]>
+			</body>
+		</method>
+		
+		<method name="getNextAvailableUID">
+			<body>
+				<![CDATA[
+				var prefix = this.m_oTabs.getAttribute("uidprefix1") + this.m_oTabs.getAttribute("uidprefix2");
+				var tabCount = this.getTabCount();
+				var sVecID = ".";
+				this.tabWalk(function(oTab) {
+					sVecID += oTab.getAttribute("uid").substr(prefix.length)+".";
+				});
+				var nID=0;
+				while(++nID)
+				{
+					if(sVecID.indexOf("."+nID+".")<0)  return prefix+nID.toString();
+				}
+				return "";
+				]]>
+			</body>
+		</method>
+		
+		<method name="makeTabVisible">
+			<parameter name="tabIndex"/>
+			<body>
+				<![CDATA[ 
+				if(this.checkTabIndexRange(tabIndex, "method makeTabVisible: ")) return;
+				var leftX = this.calcTabPosition(tabIndex-1,true);
+				var rightX = this.calcTabPosition(tabIndex,true);
+				if(leftX<0) {
+					this.do_scroll('L',-leftX);
+					this.updateScrollArrows();
+				}
+				var nTabsWidth = this.m_oTabPanels.boxObject.width-this.m_oTabButtons.boxObject.width;
+				if(rightX>nTabsWidth) {
+					this.do_scroll('R',rightX-nTabsWidth);
+					this.updateScrollArrows();
+				}
+				]]>
+			</body>
+		</method>
+		
+		<method name="getTabBrowser">
+			<parameter name="tabIndex"/>
+			<body>
+				<![CDATA[
+				if(this.checkTabIndexRange(tabIndex, "method getTabBrowser: ")) return null;
+				var uid = this.getTabUID(tabIndex);
+				for(var c=this.m_oTabPanels.firstChild; c; c=c.nextSibling)
+				{
+					if(c.getAttribute("uid")==uid) return c;
+				}
+				return null;
+				]]>
+			</body>
+		</method>
+		
+		<method name="getTabUID">
+			<parameter name="tabIndex"/>
+			<body>
+				<![CDATA[
+				if(this.checkTabIndexRange(tabIndex, "method getTabUID: ")) return null;
+				return this.m_oTabs.childNodes[tabIndex].getAttribute("uid");
+				]]>
+			</body>
+		</method>
+		
+		<method name="getTabCount">
+			<body><![CDATA[ return this.m_oTabs.childNodes.length; ]]></body>
+		</method>
+		
+		<method name="advanceSelectedTab">
+			<parameter name="dir"/>
+			<body>
+				<![CDATA[
+				var curIndex = this.currentIndex;
+				var tabCount = this.getTabCount();
+				if(dir=="R")
+				{
+					if(curIndex>=tabCount-1) curIndex=-1;
+					++curIndex;
+				}
+				else if(dir=="L")
+				{
+					if(curIndex<=0) curIndex = tabCount;
+					--curIndex;
+				}
+				else return;
+				this.currentIndex = curIndex;
+				this.makeTabVisible(curIndex);
+				mybrowser.onTabChange( false );
+				]]>
+			</body>
+		</method>
+		
+		<method name="lockTab">
+			<parameter name="tabIndex"/>
+			<parameter name="bLock"/>
+			<body>
+				<![CDATA[
+				if(this.checkTabIndexRange(tabIndex, "method lockTab: ")) return;
+				this.m_oTabs.childNodes[tabIndex].setAttribute("locked",bLock);
+				this.calcScrollLimits();
+				this.updateCloseButton();
+				]]>
+			</body>
+		</method>
+		
+		<method name="isLocked">
+			<parameter name="tabIndex"/>
+			<body>
+				<![CDATA[
+				if(this.checkTabIndexRange(tabIndex, "method isLocked: ")) return null;
+				return (this.m_oTabs.childNodes[tabIndex].getAttribute("locked")=="true");
+				]]>
+			</body>
+		</method>
+		
+		<!-- 
+			Returns DOM element by given anonid
+			@param id Value of element's anonid attribute
+			@return DOM element object
+		-->
+		<method name="a$">
+			<parameter name="id"/>
+			<body>
+			<![CDATA[ 
+			return document.getAnonymousElementByAttribute(this, "anonid", id);
+			]]>
+			</body>
+		</method>
+		
+		<!-- 
+			Swaps two given DOM elements with the same tag name
+			@param oNode1 			First node
+			@param oNode2 			Second node
+			@param namespaceURI 	Namespace uri as in createElementNS
+			@param tagName 			Node tag name
+		-->
+		<method name="swapNodesNS">
+			<parameter name="oNode1"/>
+			<parameter name="oNode2"/>
+			<parameter name="namespaceURI"/>
+			<parameter name="tagName"/>
+			<body>
+			<![CDATA[ 
+			var oTmp = document.createElementNS(namespaceURI, tagName);
+			oNode1.parentNode.replaceChild(oTmp,oNode1);
+			oNode2.parentNode.replaceChild(oNode1,oNode2);
+			oTmp.parentNode.replaceChild(oNode2, oTmp);
+			]]>
+			</body>
+		</method>
+		
+		<constructor>
+			<![CDATA[
+			/*
+			 * Loop through all tabs, executing given callback function
+			 */
+			this.tabWalk = function(fnCallback)
+			{
+				for(var c=this.m_oTabs.firstChild; c; c=c.nextSibling) fnCallback(c, this);
+			}
+			
+			
+			/*
+			 * Generates id, which is unique among all tabs with given group id
+			 * @param {String} sGroupID		Group id
+			 * @return {Number}				Unique id
+			 */
+			this.generateGroupID = function(sGroupID)
+			{
+				var tabCount = this.getTabCount();
+				var sVecID = ".";
+				this.tabWalk(function(oTab) {
+					if(oTab.getAttribute("tab_group")==sGroupID)
+						sVecID += oTab.getAttribute("tab_group_id")+".";
+				});
+				var nID=0;
+				while(++nID)
+				{
+					if(sVecID.indexOf("."+nID+".")<0)  return nID;
+				}
+				return null;
+			}
+			
+			
+			/*
+			 * Returns true if given tab index is valid.
+			 * Use this function to fool-proof your code.
+			 * @param {String} msg	Message to identify error source location
+			 */
+			this.checkTabIndexRange = function(tabIndex,msg)
+			{
+				if(tabIndex<0 || tabIndex>=this.getTabCount())
+				{
+					dump("\n"+msg+"Tab index out of range.");
+					return 1;
+				}
+				return 0;
+			}
+
+
+			/*
+			 * Onclick event handler for the tab element
+			 * @param {Event} e 	An event object
+			 */
+			this.onclick_tab = function(e)
+			{
+				if(e.button==0 || e.button==1)
+				{
+					var oTab = e.target;
+					if(oTab.tagName.toLowerCase()!="hbox") oTab=oTab.parentNode;
+					var i = this.getTabIndexByUID(oTab.getAttribute("uid"));
+					this.currentIndex = i;
+					this.makeTabVisible(i);
+					mybrowser.onTabChange( false );
+					if(e.button==1) //close on middle-click
+					{
+						oncmnd_closeTab();
+					}
+				}
+			}
+			
+			/*
+			 * Onmousedown event handler for the tab element
+			 * @param {Event} e 	An event object
+			 */
+			this.onmousedown_tab = function(e)
+			{
+				if(e.button!=2) return;
+				var oTab = e.target;
+				if(oTab.tagName.toLowerCase()!="hbox") oTab=oTab.parentNode;
+				this.m_nCurrentContextTabIndex = this.getTabIndexByUID(oTab.getAttribute("uid"));
+			}
+			
+			
+			/*
+			 * Oncommand handler for the reload tab button
+			 */
+			this.oncmnd_reloadTab = function()
+			{
+				if(this.m_bTabsLocked) return;
+				var oBrowser = this.getTabBrowser(this.m_nCurrentContextTabIndex);
+				oBrowser.webNavigation.reload(oBrowser.webNavigation.LOAD_FLAGS_BYPASS_CACHE);
+				this.m_nCurrentContextTabIndex = -1;
+			}
+			
+			/*
+			 * Oncommand handler for the close tab button
+			 * @param {Boolean} bCloseContext	Whenever to use context tab index field for removal
+			 * @param {Boolean} bCloseOthers	Whenever to close tabs with indices different from context tab index.
+			 */
+			this.oncmnd_closeTab = function(bCloseContext, bCloseOthers)
+			{
+				if(bCloseContext)
+				{
+					if(bCloseOthers)
+					{
+						var tabCount = this.getTabCount();
+						for(var i=tabCount-1; i>=0; --i)
+						{
+							if(i==this.m_nCurrentContextTabIndex) continue;
+							if(!this.isLocked(i)) this.removeTab(i);
+						}
+					}
+					else
+					{
+						var i=this.m_nCurrentContextTabIndex;
+						if(!this.isLocked(i)) this.removeTab(i);
+					}
+					this.m_nCurrentContextTabIndex = -1;					
+				}
+				else
+				{
+					var i=this.currentIndex;
+					if(!this.isLocked(i)) this.removeTab(i);
+					mybrowser.onTabChange(false);
+				}
+			}
+			
+			
+			/*
+			 * Oncommand handler for the shift tab menuitems
+			 * @param {Number} delta	How much to shift current context tab
+			 */
+			this.oncmnd_shiftTab = function(delta)
+			{
+				var i1 = this.m_nCurrentContextTabIndex;
+				var i2 = i1 + delta;
+				if(i2>=this.getTabCount()) i2=this.getTabCount()-1;
+				else if(i2<0) i2=0;
+				var oTab1 = this.m_oTabs.childNodes[i1];
+				var oTab2 = this.m_oTabs.childNodes[i2];
+				var XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+				this.swapNodesNS(oTab1,oTab2,XULNS,"hbox");
+				var iSelected = this.currentIndex;
+				if(i1==iSelected || i2==iSelected) this.makeTabVisible(iSelected);
+				this.m_nCurrentContextTabIndex = -1;
+				mybrowser.onTabChange( false );
+			}
+			
+			this.oncmnd_newTab = function(){
+				this.addTab('','','',null,true);
+				mybrowser.onTabChange( false );
+			}
+			
+			/*
+			 * Opens tab context menu and enables menuitems under certain coditions
+			 * @param {Event} e 	An event object
+			 */
+			this.onpopupshowing_tabContext = function()
+			{
+				var curIndex = this.m_nCurrentContextTabIndex;
+				if(curIndex<0) return false;
+				var bHideCloseTab = this.isLocked(curIndex);
+				this.a$("item_close_tab").setAttribute("hidden", bHideCloseTab );
+				var bHideCloseButTab = true;
+				for(var i=this.getTabCount()-1; i>=0; --i)
+					if(i!=curIndex && !this.isLocked(i))
+					{
+						bHideCloseButTab=false; break;
+					}
+				this.a$("item_close_but_tab").setAttribute("hidden", bHideCloseButTab );
+				this.a$("item_close_tab_sep").setAttribute("hidden", bHideCloseTab && bHideCloseButTab );
+				this.a$("item_reload_tab").setAttribute("disabled", this.m_bTabsLocked );
+				this.a$("item_move_tab_right").setAttribute("hidden", curIndex==this.getTabCount()-1 );
+				this.a$("item_move_tab_left").setAttribute("hidden", curIndex==0 );
+				this.a$("item_move_tab_sep").setAttribute("hidden", this.getTabCount()==1 );
+				return true;
+			}
+			
+			
+			/*
+			 * Draw tab preview on the tooltip's canvas element
+			 * @param {Event} e 	An event object
+			 */
+			this.onpopupshowing_tabPreview = function(e)
+			{
+				var oTab = document.tooltipNode;
+				if(oTab.tagName.toLowerCase()!="hbox") oTab=oTab.parentNode;
+				var uid = oTab.getAttribute('uid');
+				if(!uid) return;
+				var oBrowser = this.getTabBrowser(this.getTabIndexByUID(uid));
+				if(!oBrowser.contentWindow) {
+					if(e) e.preventDefault();
+					return;
+				}
+				oBrowser.setAttribute("style","padding:0px"); //change style, to force browser redraw
+				
+				var w = oBrowser.boxObject.width;
+				var h = oBrowser.boxObject.height;
+
+				var oCanvas = this.a$("tab_preview_canvas");
+				var canvasW = oCanvas.width;
+				if(canvasW>500 || canvasW<300) canvasW=400;
+  				var canvasH = Math.round(canvasW/w*h);
+				oCanvas.style.width=canvasW+"px";
+				oCanvas.style.height=canvasH+"px";
+				oCanvas.width = canvasW;
+  				oCanvas.height = canvasH;
+				
+				var ctx = oCanvas.getContext("2d");
+				ctx.clearRect(0, 0, canvasW, canvasH);
+				ctx.save();
+				ctx.scale(canvasW/w, canvasW/w);
+				ctx.drawWindow(oBrowser.contentWindow, 0, 0, w, h, "rgb(0,0,0)");
+				ctx.restore();
+				
+				oBrowser.removeAttribute("style"); //remove unneeded style
+			}
+			
+					
+			/*
+			 * Enable or disable tab close button
+			 */
+			this.updateCloseButton = function()
+			{
+				var bDisabled = !this.getTabCount() || this.isLocked(this.currentIndex);
+				this.m_oCloseBtn.setAttribute("disabled",bDisabled);
+			}
+			
+			
+			/*
+			 * Enable or disable scrolling arrows, using m_nScrollAmount and m_nScrollMax fields
+			 */
+			this.updateScrollArrows = function()
+			{
+				this.m_oLeftScrollBtn.setAttribute("disabled", (this.m_nScrollAmount<=0) );
+				this.m_oRightScrollBtn.setAttribute("disabled", (this.m_nScrollAmount>=this.m_nScrollMax) );
+			}
+			
+			
+			/*
+			 * Calculate rightmost x-coodinate of the tab at specified index
+			 * @param {Boolean} bUseScroll	Whenever to include scroll amount
+			 */
+			this.calcTabPosition = function(tabIndex, bUseScroll)
+			{
+				var tabsW = 0;
+				for(var i=tabIndex; i>=0; --i)
+				{
+					var oTab = this.m_oTabs.childNodes[i];
+					var oStyle = document.defaultView.getComputedStyle(oTab, '');
+					var marginLeft = oStyle.getPropertyValue("margin-left");
+					tabsW += oTab.boxObject.width+parseInt(marginLeft.replace(/px/,""));
+				}
+				return bUseScroll ? tabsW-this.m_nScrollAmount : tabsW;
+			}
+			
+			
+			/*
+			 * Calculates scroll limit in m_nScrollMax field
+			 */
+			this.calcScrollLimits = function()
+			{
+				var nLastTabRightX = this.calcTabPosition(this.getTabCount()-1, false);
+				var nTabsWidth = this.m_oTabPanels.boxObject.width-this.m_oTabButtons.boxObject.width;
+				this.m_nScrollMax = nLastTabRightX - nTabsWidth;
+				if(this.m_nScrollMax<0) this.m_nScrollMax=0;
+				this.updateScrollArrows();
+			}
+			
+			/**
+			 * Scroll the tabs to the right to fill out unoccupied space
+			 */
+			this.fillAvailableSpace = function()
+			{
+				if(this.m_nScrollAmount<=0) return;
+				var nLastTabRightX = this.calcTabPosition(this.getTabCount()-1, true);
+				var nTabsWidth = this.m_oTabPanels.boxObject.width-this.m_oTabButtons.boxObject.width;
+				var nAmount = nTabsWidth - nLastTabRightX;
+				if(nAmount<=0) return;
+				if(this.m_nScrollAmount-nAmount<0) nAmount=this.m_nScrollAmount;
+				this.do_scroll('L',nAmount);
+				this.calcScrollLimits();
+			}
+			
+			
+			/*
+			 * nsITimerCallback interface method implementation.
+			 * Called, when any timer fired and receive timer object as parameter.
+			 */
+			this.notify = function(oTimer)
+			{
+				if(!document) oTimer.cancel();
+	        	this.do_scroll(this.m_sScrollDir,this.m_nScrollDelta);
+			}
+			
+			
+			/*
+			 * Pause UI monitoring and begin scrolling
+			 */
+			this.begin_scroll = function(sDir)
+			{
+				if(this.m_oLeftScrollBtn.getAttribute("disabled")=="true" && sDir=="L") return;
+				if(this.m_oRightScrollBtn.getAttribute("disabled")=="true" && sDir=="R") return;
+				this.m_sScrollDir = sDir;
+				if(!this.m_oScrollTimer)
+            		this.m_oScrollTimer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+          		else
+             		this.m_oScrollTimer.cancel();
+          		this.m_oScrollTimer.initWithCallback(this, 4, Components.interfaces.nsITimer.TYPE_REPEATING_PRECISE);
+			}
+			
+			
+			/*
+			 * Scroll in specified direction by scroll delta
+			 */
+			this.do_scroll = function(sDir, delta)
+			{
+				var bEndScroll = false;
+				if(sDir=='L')
+				{
+					this.m_nScrollAmount-=delta;
+					if(this.m_nScrollAmount<0) {
+						this.m_nScrollAmount=0;
+						bEndScroll = true;
+					}
+				}
+				else if(sDir=='R')
+				{
+					if(delta=="max")
+						this.m_nScrollAmount=this.m_nScrollMax;
+					else
+					{
+						this.m_nScrollAmount+=delta;
+						if(this.m_nScrollAmount>this.m_nScrollMax) {
+							this.m_nScrollAmount=this.m_nScrollMax;
+							bEndScroll = true;
+						}
+					}
+				}
+				else if(sDir=='L_END') {
+					this.m_nScrollAmount=0;
+					bEndScroll = true;
+				}
+				else if(sDir=='R_END') {
+					this.m_nScrollAmount=this.m_nScrollMax;
+					bEndScroll = true;
+				}
+				this.m_oTabs.setAttribute("style","margin-left:-"+this.m_nScrollAmount+"px");
+				if(bEndScroll) {
+					this.end_scroll();
+					this.calcScrollLimits();
+				}
+			}
+			
+			
+			/*
+			 * End scrolling and release timer
+			 */
+			this.end_scroll = function()
+			{
+				if(this.m_oScrollTimer) {
+					this.m_oScrollTimer.cancel();
+					this.m_oScrollTimer = null;
+				}
+			}
+			]]>
+		</constructor>
+		
+		<destructor>
+			<![CDATA[
+			this.end_scroll();
+			]]>
+		</destructor>
+	</implementation>
+	
+	<handlers>
+		<handler event="keypress" key="N" modifiers="accel">
+			<![CDATA[ this.oncmnd_newTab(); ]]>
+		</handler>
+		<handler event="keypress" keycode="VK_F4" modifiers="accel">
+			<![CDATA[ this.oncmnd_closeTab(); ]]>
+      	</handler>
+		<handler event="keypress" key="W" modifiers="accel">
+			<![CDATA[ this.oncmnd_closeTab(); ]]>
+      	</handler>
+		<handler event="keypress" keycode="VK_LEFT" modifiers="alt,accel">
+			<![CDATA[ this.advanceSelectedTab('L'); ]]>
+      	</handler>
+		<handler event="keypress" keycode="VK_RIGHT" modifiers="alt,accel">
+			<![CDATA[ this.advanceSelectedTab('R'); ]]>
+      	</handler>
+	</handlers>
+</binding>
+	
+</bindings>

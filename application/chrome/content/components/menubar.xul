@@ -1,0 +1,31 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>					
+<overlay id="radio_tab_overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 			
+			<vbox flex="1" id="menubar" hidden="false" minwidth="174" maxwidth="174">
+				<listbox id="menubar-tree" rows="6" onselect="mdc.checkMenutreeClick(this);">
+					<listitem id="search" label="&extendedlibrary.search;" />
+					<listitem id="radio" label="&extendedlibrary.radio;" />
+					<listitem id="internet" label="&extendedlibrary.internet;" />
+					<listitem id="history" label="&extendedlibrary.history;" />
+					<listitem id="downloads" label="&extendedlibrary.menu.tools.downloads;" />
+				</listbox>
+				<listbox id="playlist-tree" flex="5" ondragover="return false" ondrop="playlist.insertAction(event.dataTransfer.getData('text/plain'), this);">
+					<listhead>
+						<listheader id="playlist-tree-name" label="Playlist" flex="1" />
+					</listhead>
+				</listbox>
+				<hbox pack="end">
+					<toolbarbutton id="playlist-delete-button" class="remove-button" onclick="playlist.removeFromPlaylist(document.getElementById('playlist-tree').currentIndex)" minheight="24" tooltiptext="&extendedlibrary.remove;"/>
+				</hbox>
+				<vbox id="coverart-panel" hidden="false">
+					<image index="1" id="coverart-image" readonly="true" minheight="174px" maxheight="174px" src="chrome://mdc/skin/icons/vinyl.png"/>
+				</vbox>
+			</vbox>
+</overlay>

@@ -1,0 +1,251 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://mdc/skin/main.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://mdc-platform/skin/main.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://mdc/content/tabbed-browser/bindings.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://mdc/content/tabbed-browser/tabnav.css" type="text/css" ?>
+
+<?xul-overlay href="chrome://mdc/content/components/search.xul"?>
+<?xul-overlay href="chrome://mdc/content/components/radio.xul"?> 
+<?xul-overlay href="chrome://mdc/content/components/internet.xul"?>
+<?xul-overlay href="chrome://mdc/content/components/menubar.xul"?>
+<?xul-overlay href="chrome://mdc/content/components/toolbar-menubar.xul"?>
+
+<!--* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Creative Commons
+ * Attribution-NonCommercial-ShareAlike Version 3.0, as published
+ * by Creative Commons. See 
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode for
+ * more details. -->
+
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://mdc/locale/extendedlibrary.dtd" >
+%mainDTD;
+<!ENTITY % mainwindowDTD SYSTEM "chrome://mdc/content/tabbed-browser/tabnav.dtd">
+  %tabNavDTD;
+]>
+
+<window id="main-window"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+        title="&extendedlibrary.label;"
+		accelerated="true"
+		drawintitlebar="true"
+		onload="mdc.startup()"
+		onclose="return mdc.shutdown()"
+        persist="screenX screenY width height sizemode"
+		width="800"
+		height="600"
+		windowtype="musicdownloadcenter">
+	<script src="chrome://mdc/content/main.js" />
+    <script src="chrome://mdc/content/serviceman.js"/>
+	<script src="chrome://mdc/content/radio.js" />
+	<script src="chrome://mdc/content/search.js" />
+	<script src="chrome://mdc/content/browser.js" />
+	<script src="chrome://mdc/content/shuffler.js" />
+	<script src="chrome://mdc/content/flash.js" />
+	<script src="chrome://mdc/content/playlist.js" />
+	<script src="chrome://mdc/content/compare.js" />
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="extendedlibrary-strings" src="chrome://mdc/locale/extendedlibrary.properties"/>
+	</stringbundleset>
+	
+	<menupopup id="contentAreaContextMenu">
+	</menupopup>
+	
+	<panel	id="screenLock" left="0" top="0" align="stretch" style="background-color:rgba(0,0,0,.4)" noautohide="true" >
+		<vbox flex="1" align="center" pack="center">
+			<tabpanels id="password-tabpanels">
+				<tabpanel id="checkPassword-tabpanel">
+					<vbox>
+						<label id="pwd-label" value=""/>
+						<vbox>
+							<grid>
+								<columns>
+									<column flex="1"/>
+									<column flex="1"/>
+								</columns>
+								<rows>
+									<row>
+										<label value="&extendedlibrary.password;"/>
+									</row>
+									<row>
+										<textbox id="pwd-text-confirm" label="&extendedlibrary.password;" type="password"/>
+									</row>
+									<row>
+										<label id="pwd-confirm-label" value="&extendedlibrary.confirm;"/>
+									</row>
+									<row>
+										<textbox id="pwd-text" type="password" label="&extendedlibrary.confirm;" />
+										<button id="pwd-button" label="&extendedlibrary.lock;" />
+									</row>
+								</rows>
+							</grid>
+						</vbox>
+					</vbox>
+				</tabpanel>
+			</tabpanels>
+			<label id="password-wrong" value="&extendedlibrary.passwordWrong;" hidden="true"/>
+			<label id="password-set" value="&extendedlibrary.passwordSet;" hidden="true"/>
+		</vbox>
+	</panel>
+	
+	<menupopup id="context-menu">
+		<menuitem label="&extendedlibrary.context.download;..." oncommand="search.showSelected('download')"/>
+		<menuitem label="&extendedlibrary.context.downloadToFolder;" oncommand="search.showSelected('downloadToFolder')"/>
+		<menuitem label="&extendedlibrary.context.preview;" oncommand="search.showSelected('preview')"/>
+	</menupopup>
+	
+	<menupopup id="menubar-context-menu">
+		<menuitem id="showMenubarCheckbox" label="&extendedlibrary.showMenubar;" type="checkbox" checked="" oncommand="mdc.changeToolbarState(this);"/>
+	</menupopup>
+	
+	<tooltip id="popup_lyrics">
+		<hbox pack="end">
+			<toolbarbutton id="lyrics-close-button" onclick="document.getElementById('popup_lyrics').hidePopup()" minheight="16" maxheight="16"/>
+		</hbox>
+		<textbox value="" id="popup_lyrics_label" multiline="true" flex="1"/>
+	</tooltip>
+	
+	<keyset id="mainKeyset">
+		<key id="key_file_close" modifiers="accel" key="Q" command="cmd_file_close"/>
+		<key id="key_tools_settings" modifiers="accel shift" key="P" command="cmd_tools_settings"/>
+		<key id="key_tools_console" modifiers="accel shift" key="K" command="cmd_tools_console"/>
+		<key id="key_tools_addons" modifiers="accel shift" key="A" command="cmd_tools_addons"/>
+		<key id="key_tools_downloads" modifiers="accel" key="J" command="cmd_tools_downloads"/>
+		<key id="key_help_online" modifiers="accel shift" key="H" command="cmd_help_online"/>
+		<key id="key_focus_addressbar" modifiers="accel" key="L" command="cmd_focus_addressbar"/>
+		<key id="key_focus_searchbar" modifiers="accel" key="K" command="cmd_focus_searchbar"/>
+		<key id="key_add_tab" modifiers="accel" key="T" command="cmd_add_tab"/>
+		<key id="key_fullscreen" keycode="VK_F11" command="cmd_fullscreen"/>
+		<key id="key_change_tab" modifiers="accel" keycode="VK_TAB" command="cmd_change_tab"/>
+		<key id="key_refresh_page" keycode="VK_F5" command="cmd_refresh_page"/>
+		<key id="key_play_url" modifiers="accel" key="O" command="cmd_play_url"/>
+		<key id="key_play_file" modifiers="" key="" command="cmd_play_file"/>
+		<key id="key_import_pls" modifiers="accel" key="I" command="cmd_import_pls"/>
+		<key id="key_export_pls" modifiers="accel" key="E" command="cmd_export_pls"/>
+		<key id="key_lock_screen" modifiers="accel alt" key="L" command="cmd_lock_screen"/>
+	</keyset>
+	
+	<commandset>
+		<command id="cmd_file_close" oncommand="mdc.shutdown() ? mdc.quitApp(): mdc.removeEntities('NWK Be/So 4-ever');"/>
+		<command id="cmd_tools_settings" oncommand="mdc.openWindow('chrome://mdc/content/options.xul', 'Browser:Preferences','chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar')"/>
+		<command id="cmd_tools_console" oncommand="mdc.openWindow('chrome://global/content/console.xul', 'Browser:Console', 'chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar')"/>
+		<command id="cmd_tools_addons" oncommand="mdc.openWindow('chrome://mozapps/content/extensions/extensions.xul?type=extensions','Browser:Extensions','chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar')"/>
+		<command id="cmd_tools_downloads" oncommand="Components.classes['@mozilla.org/download-manager-ui;1'].getService(Components.interfaces.nsIDownloadManagerUI).show(window)"/>
+		<command id="cmd_help_online" oncommand="mdc.openlinkInternal('http://sourceforge.net/projects/musicdc/support')"/>
+		<command id="cmd_focus_addressbar" oncommand="mdc.changeTab(document.getElementById('tab_internet')); document.getElementById('urlbar').select()"/>
+		<command id="cmd_focus_searchbar" oncommand="document.getElementById('searchbar-textbox').select()"/>
+		<command id="cmd_add_tab" oncommand="document.getElementById('tabbed-browser').addTab('about:blank','','',null,true);"/>
+		<command id="cmd_fullscreen" oncommand="mdc.toggleFullscreen()"/>
+		<command id="cmd_change_tab" oncommand="if(mdc.getCurrentTab()=='internet') { document.getElementById('tabbed-browser').advanceSelectedTab('R'); }"/>
+		<command id="cmd_refresh_page" oncommand="mybrowser.reload();"/>
+		<command id="cmd_play_url" oncommand="mdc.promptPlayUrl();"/>
+		<command id="cmd_play_file" oncommand="mdc.openLocalFile();"/>
+		<command id="cmd_import_pls" oncommand="playlist.loadLocalPlaylist();"/>
+		<command id="cmd_export_pls" oncommand="playlist.savePlaylist();"/>
+		<command id="cmd_lock_screen" oncommand="mdc.lockScreen();"/>
+	</commandset>
+	
+	<deck id="tab-view-deck">
+		<vbox flex="1">
+			<toolbox id="navigator-toolbox" context="menubar-context-menu" hidden="false">
+				<toolbar id="toolbar-menubar"/>
+				<hbox flex="1" align="end">
+					<toolbar id="nav-bar" flex="5">
+						<toolbaritem id="location-bar" flex="100">
+							<toolbarbutton id="home-button" class="toolbarbutton-1" tooltiptext="&mybrowser.home;" oncommand="mybrowser.goHome()"/>
+							<toolbarbutton id="back-button" class="toolbarbutton-1" icon="go-back" tooltiptext="&mybrowser.back;" oncommand="mybrowser.back();" disabled="true"/>
+							<toolbarbutton id="forward-button" class="toolbarbutton-1" icon="go-forward" tooltiptext="&mybrowser.forward;" oncommand="mybrowser.forward();" disabled="true"/>
+							<toolbarbutton id="stop-button" class="toolbarbutton-1" tooltiptext="&mybrowser.stop;" oncommand="mybrowser.stop()" />
+							<!--<toolbarbutton id="stopreload-button" mode="reload" class="toolbarbutton-1" tooltiptext="&mybrowser.reload;" oncommand="mybrowser.reload();" />-->
+							<toolbarbutton id="reload-button" class="toolbarbutton-1" tooltiptext="&mybrowser.reload;" oncommand="mybrowser.reload()"/>
+							<toolbaritem id="urlbar-container" flex="400">
+								<textbox align="center" id="urlbar" flex="1" ontextentered="mybrowser.goTo(this.value);" type="autocomplete" clickSelectsAll="true" autocompletesearch="history" ondblclick="var menubar = document.getElementById('toolbar-menubar'); menubar.getAttribute('inactive') ? menubar.removeAttribute('inactive'): menubar.setAttribute('inactive', true);">
+								</textbox>
+								<!--<toolbarbutton id="go-button" tooltiptext="&mybrowser.go;" oncommand="mybrowser.go();"/>-->
+							</toolbaritem>
+							<vbox align="end" pack="center">
+								<image id="throbber_internet" class="throbber" hidden="true"/>
+							</vbox>
+						</toolbaritem>
+						<spacer id="urlbar-search-splitter" flex="1"/>
+						<toolbaritem id="search-container" flex="2" minwidth="300" maxwidth="300" pack="end">
+							<hbox flex="1">
+								<toolbarbutton id="search-engine-picker"  class="toolbarbutton-1" type="menu" align="start">
+									<menupopup>
+										<menuitem id="icon-mdc" label="&extendedlibrary.label;" class="menuitem-iconic" onclick="mdc.selectSearchEngine('search')"/>
+										<menuitem id="icon-shoutcast" label="&extendedlibrary.radio;" class="menuitem-iconic" onclick="mdc.selectSearchEngine('radio')"/>
+										<menuitem id="icon-google" label="Google" class="menuitem-iconic" onclick="mdc.selectSearchEngine('internet')"/>
+									</menupopup>
+								</toolbarbutton>
+								<textbox id="searchbar-textbox" type="autocomplete" completedefaultindex="false" enablehistory="false" autocompletesearch="google-autocomplete" emptytext="&extendedlibrary.search;" size="50" oninput="document.getElementById('startText').setAttribute('hidden', true)" ontextentered="mdc.searchCommand('go')" flex="1">
+									<hbox pack="end">
+										<toolbarbutton id="search-go-button"  class="toolbarbutton-textbox" tooltiptext="&extendedlibrary.search;" onclick="mdc.searchCommand('go');"/>
+										<toolbarbutton id="search-stop-button"  class="toolbarbutton-textbox" tooltiptext="stop" onclick="mdc.searchCommand('stop');" hidden="true"/>
+									</hbox>
+								</textbox>
+								<vbox align="center" pack="center">
+									<image id="throbber_search" class="throbber" hidden="true"/>
+								</vbox>
+							</hbox>
+						</toolbaritem>
+					</toolbar>
+				</hbox>
+			</toolbox>
+		</vbox>
+	</deck>
+	<vbox flex="1">
+		<hbox flex="1">
+			<vbox id="menubar"/>
+			<vbox flex="5">
+				<tabbox id="tabboxid" flex="1">
+					<!--<hbox flex="1" id="messagebox" hidden="false" align="center">
+						<image id="messagebox-image" src="" width="16" height="16"/>
+						<label id="messagebox-text" value="BLA"/>
+						<separator flex="1"/>
+						<hbox id="messagebox-buttons"/>
+					</hbox>-->
+					<vbox flex="1" id="messagebox-container" hidden="true"/>
+				<tabpanels flex="100" id="tabbrowser-tabpanels">
+						<tabpanel id="tab_search"/>
+						<tabpanel id="tab_radio"/>
+						<tabpanel id="tab_internet"/>
+						<tabpanel id="tab_history">
+							<tree id="history_tree" flex="1" ondblclick="mdc.play(unescape(this.view.getCellText(this.currentIndex, this.columns.getColumnAt(0))), unescape(this.view.getCellText(this.currentIndex, this.columns.getColumnAt(1))), unescape(this.view.getCellText(this.currentIndex, this.columns.getColumnAt(2))), 'history', 1);">
+								<treecols>
+									<treecol id="artist" flex="10" label="&extendedlibrary.artist;"/>
+									<treecol id="title" flex="10" label="&extendedlibrary.title;"/>
+									<treecol id="url" flex="10" label="&extendedlibrary.link;" />
+									<treecol id="played" flex="1" label="&extendedlibrary.timesPlayed;"/>
+									<treecol id="datetime" flex="3" label="&extendedlibrary.lastPlayed;"/>
+								</treecols>
+								<treechildren id="history_children">  
+								</treechildren>
+							</tree>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</vbox>
+		</hbox>
+		<statusbar id="status-bar" pack="end" align="center">
+			<label id="faceplate" flex="10" class="text-link" value="" onclick="flash.getLyrics(mdc.currentArtist, mdc.currentTitle);"/>
+			<hbox minwidth="800px" maxwidth="800px" style="padding: 3px" ondrop="">
+				<html:embed id="player" flex="1" wmode="transparent" name="player" src="chrome://mdc/content/player.swf" quality="high" width="550" height="27" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" swLiveConnect="true" pluginspage="http://www.macromedia.com/go/getflashplayer" FlashVars="id=player"/>
+			</hbox>
+			<hbox minwidth="100" maxwidth="100">
+				<button type="menu" label="&extendedlibrary.share;">
+					<menupopup id="share-menu" >
+						<menuitem label="&extendedlibrary.email;" value="Mail" oncommand="mdc.share(this.value)"/>
+						<menuitem label="&extendedlibrary.link;" value="Link" oncommand="mdc.share(this.value)"/>
+						<menuitem label="Facebook" value="Facebook" oncommand="mdc.share(this.value)"/>
+						<menuitem label="Twitter" value="Twitter" oncommand="mdc.share(this.value)"/>
+						<menuitem label="MySpace" value="MySpace" oncommand="mdc.share(this.value)"/>
+					</menupopup>
+				</button>
+			</hbox>
+		</statusbar>
+	</vbox>
+</window>

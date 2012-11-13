@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://mdc/locale/extendedlibrary.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+    buttons="accept,cancel"
+    title="First run"
+	width="800"
+	height="300"
+	buttonlabelcancel="&extendedlibrary.firstrun.notworking;" buttonlabelaccept="&extendedlibrary.firstrun.working;"
+	onload="onload()"
+	ondialogaccept="setPref(); alert('Nice. You\'re ready to go. High five!')" ondialogcancel="mdc.openlinkExternal('http://get.adobe.com/flashplayer/'); quit(true)">
+	<hbox>
+		
+		<vbox flex="1">
+			<description style="color: #ff0000;">There may be countries where downloading copyright protected media is forbidden.
+		If you are resident of such a country, please uninstall this software.
+		You could get into trouble.</description>
+			<hbox><button label="Change language..." onclick="mdc.openWindow('chrome://mdc/content/langselect.xul','_blank','chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar');"/><separator flex="1"/></hbox>
+		</vbox>
+		<vbox flex="8">
+		</vbox>
+	</hbox>
+	<description>&extendedlibrary.firstrun.description1;</description><description>&extendedlibrary.firstrun.description2;</description>
+	<separator class="groove"/>
+		<hbox flex="2">
+			<label id="faceplate" value="" onclick=""/>
+			<html:div style="-moz-box-flex: 1; width: 100%; height: 100%;">
+				<html:embed id="player" type="application/x-shockwave-flash" wmode="transparent" src="" height="27" width="100%"></html:embed>
+			</html:div>
+		</hbox>
+		<separator class="groove"/>
+	<description>&extendedlibrary.firstrun.doSomething;</description>
+
+
+<script type="application/x-javascript">
+<![CDATA[
+	function onload(){
+		mdc.play('Chronischakut', 'Meitschizueg', 'http://www.chronischakut.ch/09/music/03_meitschizueueg.mp3', "search", "1");
+	}
+	function setPref(){
+		var prefs = Components.classes["@mozilla.org/preferences-service;1"]
+							.getService(Components.interfaces.nsIPrefService);
+		prefs = prefs.getBranch("application.firstrun.");
+		prefs.setBoolPref("enabled", false);
+	}
+
+	function quit (aForceQuit)
+	{
+		  var appStartup = Components.classes['@mozilla.org/toolkit/app-startup;1'].
+			getService(Components.interfaces.nsIAppStartup);
+
+		  // eAttemptQuit will try to close each XUL window, but the XUL window can cancel the quit
+		  // process if there is unsaved data. eForceQuit will quit no matter what.
+		  var quitSeverity = aForceQuit ? Components.interfaces.nsIAppStartup.eForceQuit :
+										  Components.interfaces.nsIAppStartup.eAttemptQuit;
+		  appStartup.quit(quitSeverity);
+	}
+]]>
+
+</script>
+<script src="main.js"/>
+</dialog>

@@ -1,0 +1,19 @@
+<stationlist>
+	<station name="Energy Love" url="http://broadcast.infomaniak.ch/energylove-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Rock" url="http://broadcast.infomaniak.ch/energyrock-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy 80s" url="http://broadcast.infomaniak.ch/energy80s-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy 90s" url="http://broadcast.infomaniak.ch/energy90s-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy 00s" url="http://broadcast.infomaniak.ch/energy00s-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Soundtrack" url="http://broadcast.infomaniak.ch/energysoundtrack-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Mix" url="http://broadcast.infomaniak.ch/energymix-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Lounge" url="http://broadcast.infomaniak.ch/energylounge-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Charts" url="http://broadcast.infomaniak.ch/energycharts-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Live" url="http://broadcast.infomaniak.ch/energylive-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Latin" url="http://broadcast.infomaniak.ch/energylatin-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Girl" url="http://broadcast.infomaniak.ch/energygirl-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Elektro" url="http://broadcast.infomaniak.ch/energyelektro-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Swiss" url="http://broadcast.infomaniak.ch/energyswiss-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy German" url="http://broadcast.infomaniak.ch/energygerman-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Italy" url="http://broadcast.infomaniak.ch/energyitaly-high.mp3.pls" type="direct" country="CH" />
+	<station name="Energy Special" url="http://broadcast.infomaniak.ch/energyspecial-high.mp3.pls" type="direct" country="CH" />
+</stationlist>

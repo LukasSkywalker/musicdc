@@ -1,0 +1,19 @@
+content mdc  content/
+skin 	mdc classic/1.0 skin/default/
+content mdc-platform	content/ platform
+skin	mdc-platform	classic/1.0 skin/
+
+
+locale	branding en-US locale/branding/
+content branding content/branding/
+
+locale  mdc  en-US  locale/en-US/
+locale  mdc  de  locale/de/
+locale  mdc  pt-BR locale/pt-BR/
+locale  mdc  fr locale/fr/
+locale  mdc  it locale/it/ 
+locale  mdc  sv-SE locale/sv-SE/
+locale  mdc  ar locale/ar/
+locale  mdc  es-ES locale/es-ES/
+locale  mdc  ja-JP locale/ja-JP/
+locale  mdc  zh-CN locale/zh-CN/

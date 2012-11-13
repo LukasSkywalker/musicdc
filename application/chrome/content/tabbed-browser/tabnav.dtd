@@ -1,0 +1,11 @@
+<!ENTITY xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<!ENTITY xbl "http://www.mozilla.org/xbl">
+<!ENTITY html "http://www.w3.org/1999/xhtml">
+<!ENTITY svg "http://www.w3.org/2000/svg">
+
+<!ENTITY tab_def_label "...">
+<!ENTITY tab_reload "Reload tab">
+<!ENTITY tab_close "Close tab">
+<!ENTITY tab_close_but "Close all tabs but this">
+<!ENTITY tab_move_right "Shift to right">
+<!ENTITY tab_move_left "Shift to left">

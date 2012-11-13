@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<!--* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Creative Commons
+ * Attribution-NonCommercial-ShareAlike Version 3.0, as published
+ * by Creative Commons. See 
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode for
+ * more details. -->
+
+<?xml-stylesheet href="chrome://mdc/skin/preferences.css" type="text/css"?>
+<?xml-stylesheet href="chrome://mdc-platform/skin/preferences.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://mdc/locale/extendedlibrary.dtd">
+
+<prefwindow id="BrowserPreferences"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&extendedlibrary.label;"
+	buttons="accept"
+	onload="serviceman.onload();">
+    <script src="serviceman.js"/>
+	<script src="LocaleSwitchDemo.js"/>
+	<script src="main.js"/>
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="extendedlibrary-strings" src="chrome://mdc/locale/extendedlibrary.properties"/>
+	</stringbundleset>
+	<preferences>
+	</preferences>
+	<prefpane id="paneMain" label="&extendedlibrary.services;">
+		<hbox flex="1">
+			<vbox flex="1">
+				<listbox id="listbox" onselect="serviceman.updateProperties(this.selectedItem.id);"/>
+				<hbox><button id="addServiceButton" label="&extendedlibrary.suggestNewService;" onclick="mdc.openInternalBrowser('http://musicdc.sourceforge.net/wordpress/?page_id=59',800,600)"/><separator flex="1"/></hbox>
+			</vbox>
+			<vbox flex="1">
+				<description id="about" value=""/>
+				<!--<checkbox id="enabled" label="&extendedlibrary.enabled;" disabled="true" />-->
+				<description value="&extendedlibrary.advantages;"/>
+				<textbox multiline="true" id="advantages" value="" readonly="true"/>
+				<description value="&extendedlibrary.disadvantages;"/>
+				<textbox multiline="true" id="disadvantages" value="" readonly="true"/>
+			</vbox>			
+			<!--<vbox flex="1">
+			</vbox>-->
+		</hbox>
+	</prefpane>
+	<prefpane id="paneContent" label="&extendedlibrary.appearance;" onpaneload="localeswitch.onLoad();">
+		<groupbox id="groupbox-language">
+			<caption label ="Select language"/>
+			<vbox flex="1">
+				<listbox id="locale-listbox" rows="10" crop="none" ondblclick="localeswitch.changeLocale()">
+				</listbox>
+				<hbox>
+					<separator flex="1"/>
+					<button label="Change" oncommand="localeswitch.changeLocale()"/>
+				</hbox>
+			</vbox>
+		</groupbox>
+	</prefpane>
+	<prefpane id="paneAdvanced" label="&extendedlibrary.advanced;">
+		<hbox>
+			<vbox flex="1">
+				<button align="left" label="about:config"  oncommand="mdc.openWindow('about:config', 'prefs', 'chrome,width=500,height=300')"/>
+				<button align="left" label="&extendedlibrary.menu.help.checkForUpdates;" oncommand="mdc.checkForUpdates()"/>
+				<button align="left" label="&extendedlibrary.website;"  oncommand="mdc.openlinkExternal('http://sourceforge.net/projects/musicdc/');"/>
+				<button align="left" label="&extendedlibrary.bugs;" oncommand="mdc.openlinkExternal('http://sourceforge.net/tracker/?group_id=362590&amp;atid=1512724');"/>
+				<button align="left" label="about:mdc"  oncommand="mdc.openWindow('about:', 'prefs', 'chrome,width=450,height=600')"/>
+				<!--<button align="left" label="about:cache"  oncommand="mdc.openWindow('about:cache', 'prefs', 'chrome,width=450,height=600')"/>-->
+				<!--<button align="left" label="&addons.label;" oncommand="window.open('about:addons', 'prefs', 'chrome,width=800,height=600')"/>-->
+			</vbox>
+		</hbox>
+	</prefpane>
+</prefwindow>
