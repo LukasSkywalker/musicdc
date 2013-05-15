@@ -163,7 +163,7 @@ var mdc = {
 		}
 	},
 	
-	downloadBinaryFile: function(source, target) {
+	downloadBinaryFile: function(source, target, referrer) {
 		/*Download a file with the built-in download manager. Takes an nsIURL and an nsIFile*/
 		var observerService = Components.classes["@mozilla.org/observer-service;1"]
                                   .getService(Components.interfaces.nsIObserverService);
@@ -191,7 +191,8 @@ var mdc = {
 		persist.progressListener = xfer;
 
 		// save the canvas data to the file
-		persist.saveURI(source, null, null, null, null, file);
+		var ref = io.newURI(referrer, null, null);
+		persist.saveURI(source, null, ref, null, null, file);
 	},
 	
 	getFile: function(source) {

@@ -51,6 +51,7 @@ var search = {
 		var title = unescape(mdc.removeEntities(content[2].replace(/\+/g," ")).replace(/<(?:.|\s)*?>/g,"").substr(0,80).replace(/&amp;amp;/g, "&"));
 		var service = content[3];
 		var similarity = Math.max(mdc.round(compare.compareStrings(this.lastSearchTerm, artist+' '+title), 2), mdc.round(compare.compareStrings(this.lastSearchTerm, title+' '+artist), 2));
+		var referrer = content[4];
 		var listbox = document.getElementById("search_treechildren");
 			var item = document.createElement("richlistitem");
 				item.setAttribute("ondblclick", "mdc.play('"+escape(artist)+"', '"+escape(title)+"', '"+escape(url)+"', 'search', null)");
@@ -71,7 +72,7 @@ var search = {
 			var button_download = document.createElement("button");
 				button_download.setAttribute("label","Download");
 				button_download.setAttribute("height","1px");
-				button_download.setAttribute("onclick","var file = mdc.filePicker('save', null, '"+escape(artist)+" - "+escape(title)+".mp3', 'mp3'); mdc.downloadBinaryFile('"+url+"', file);");
+				button_download.setAttribute("onclick","var file = mdc.filePicker('save', null, '"+escape(artist)+" - "+escape(title)+".mp3', 'mp3'); mdc.downloadBinaryFile('"+url+"', file, '"+referrer+"');");
 			var button_preview = document.createElement("toolbarbutton");
 				button_preview.style.listStyleImage = "url('chrome://mdc/skin/icons/speaker.png')";
 				button_preview.setAttribute("height","1px");
